@@ -153,21 +153,43 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
-\begin{frame}[c]{
-  \only<1>{Growth curves}
-  \only<2|handout 0>{{\Fone} males}
-  \only<3|handout 0>{{\Fone} females}
-  \only<4|handout 0>{{\Ftwo} males}
-  \only<5|handout 0>{{\Ftwo} females}
+\begin{frame}[c]{Growth curves:
+\only<1|handout 0>{Parents}\only<2-3>{{\Ftwo} males}\only<4|handout 0>{{\Ftwo} females}
 }
 
-\only<1>{\figw{Figs/growth1.pdf}{1.0}}
+\only<1|handout 0>{\figw{Figs/growth1.pdf}{1.0}}
 \only<2|handout 0>{\figw{Figs/growth2.pdf}{1.0}}
-\only<3|handout 0>{\figw{Figs/growth3.pdf}{1.0}}
+\only<3>{\figw{Figs/growth3.pdf}{1.0}}
 \only<4|handout 0>{\figw{Figs/growth4.pdf}{1.0}}
-\only<5|handout 0>{\figw{Figs/growth5.pdf}{1.0}}
 
 \note{
+  We don't have too much data on the body weights of the Gough and WSB
+  parents, but they do show large differences.
+  
+  We've measured body weight for each mouse, weekly, at ages
+  1{\textendash}16 weeks. there is a large sex difference and
+  considerable individual variation.
+}
+\end{frame}
+
+
+\begin{frame}[c]{Growth rate:
+\only<1-2>{{\Ftwo} males}\only<3-4|handout 0>{{\Ftwo} females}
+}
+
+\only<1>{\figw{Figs/rate1.pdf}{1.0}}
+\only<2|handout 0>{\figw{Figs/rate2.pdf}{1.0}}
+\only<3|handout 0>{\figw{Figs/rate3.pdf}{1.0}}
+\only<4|handout 0>{\figw{Figs/rate4.pdf}{1.0}}
+
+\note{
+  The estimated growth rate (the first derivatives of the body weight
+  curves) are particularly interesting: high initial rate that slows
+  during weeks 4{\textendash}7 and then is flat thereafter.
+  
+  The estimated average growth rates for the Gough and WSB parents are
+  quite noisy, but it does seem that the biggest differences are in
+  the initial growth, in weeks 1{\textendash}5.
 }
 \end{frame}
 

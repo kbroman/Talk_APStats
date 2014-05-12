@@ -1,6 +1,6 @@
 TALK = ctc2014
 
-${TALK}.pdf: ${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf
+${TALK}.pdf: ${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf
 	xelatex ${TALK}
 
 ${TALK}.tex: ${TALK}.Rnw
@@ -11,6 +11,9 @@ Figs/cross1.pdf: R/plot_crosses.R
 
 Figs/growth1.pdf: R/growth_curves.R
 	cd R;R CMD BATCH growth_curves.R
+
+Figs/rate1.pdf: R/growth_rate.R
+	cd R;R CMD BATCH growth_rate.R
 
 notes: ${TALK}_withnotes.pdf
 pdf: ${TALK}.pdf notes
