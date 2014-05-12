@@ -79,13 +79,13 @@ dev.off()
 x <- seq(5, 195, length=7)[-c(1,4,7)]
 wsbx <- c(x[1]-xd, x[2]+xd, x[3]-xd, x[4]+xd)
 
-pdf("../Figs/cross3.pdf", height=6.5, width=10, pointsize=18)
+pdf("../Figs/cross3.pdf", height=5, width=10, pointsize=18)
 par(bg=brocolors("bg"), col="white", col.axis="white",
     col.main="white", col.lab="white")
 
 par(mar=rep(0.1, 4), bty="n")
 plot(0,0,type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-     xlim=c(0, 200), ylim=c(0, 200))
+     xlim=c(0, 200), ylim=c(50, 200))
 for(j in c(0,2)) {
   for(i in 1:2)
     plot_ind(f3[[i+j]], c(x[i+j], y[1]), col=mycolors, chrlength=25)
@@ -95,13 +95,13 @@ dev.off()
 
 
 for(cr in 1:4) {
-  pdf(paste0("../Figs/cross", 3+cr, ".pdf"), height=6.5, width=10, pointsize=18)
+  pdf(paste0("../Figs/cross", 3+cr, ".pdf"), height=5, width=10, pointsize=18)
   par(bg=brocolors("bg"), col="white", col.axis="white",
       col.main="white", col.lab="white")
 
   par(mar=rep(0.1, 4), bty="n")
   plot(0,0,type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-       xlim=c(0, 200), ylim=c(0, 200))
+       xlim=c(0, 200), ylim=c(50, 200))
   for(j in c(0,2)) {
     for(i in 1:2)
       plot_ind(f3[[i+j]], c(x[i+j], y[1]), col=mycolors, chrlength=25)
@@ -136,13 +136,13 @@ for(cr in 1:4) {
 mycolors2 <- mycolors
 mycolors2[-length(mycolors2)] <- mycolors[2]
 
-pdf("../Figs/cross8.pdf", height=6.5, width=10, pointsize=18)
+pdf("../Figs/cross8.pdf", height=5, width=10, pointsize=18)
 par(bg=brocolors("bg"), col="white", col.axis="white",
     col.main="white", col.lab="white")
 
 par(mar=rep(0.1, 4), bty="n")
 plot(0,0,type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-     xlim=c(0, 200), ylim=c(0, 200))
+     xlim=c(0, 200), ylim=c(50, 200))
 for(j in c(0,2)) {
   for(i in 1:2)
     plot_ind(f3[[i+j]], c(x[i+j], y[1]), col=mycolors2, chrlength=25)
