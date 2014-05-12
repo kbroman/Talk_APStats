@@ -108,7 +108,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \figw{Figs/wsb_508_and_gough_535_cropped.jpg}{1}
 
 \note{
-  Here is a Gough mouse (right) next to a WSB mouse (left).
+  Here is a WSB mouse (left) next to a Gough mouse (right).
 }
 \end{frame}
 
