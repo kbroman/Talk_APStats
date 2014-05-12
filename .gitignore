@@ -6,5 +6,5 @@
 *.snm
 *.toc
 *.vrb
-*_withnotes.tex
+*.tex
 *.Rout

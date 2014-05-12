@@ -3,6 +3,9 @@ TALK = ctc2014
 ${TALK}.pdf: ${TALK}.tex Stuff/header.tex Figs/cross1.pdf
 	xelatex ${TALK}
 
+${TALK}.tex: ${TALK}.Rnw
+	R -e 'library(knitr);knit("${TALK}.Rnw")'
+
 Figs/cross1.pdf: R/plot_crosses.R
 	cd R;R CMD BATCH plot_crosses.R
 

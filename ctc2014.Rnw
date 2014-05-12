@@ -6,6 +6,21 @@
 
 \input{Stuff/header.tex}
 
+% knitr options
+<<options, echo=FALSE, results="hide">>=
+library(broman) # for colors
+opts_chunk$set(echo=FALSE, results="hide", echo=FALSE,
+               fig.path="MoreFigs/", verbose=TRUE,
+               fig.height=6.5, fig.width=10,
+               fig.align="center")
+library(broman)
+@
+
+<<load_data>>=
+load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
+@
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % end of header
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -29,6 +44,12 @@
   \titlepage
 
 \note{
+  This is a collaboration with Bret Payseur (Genetics, UW-Madison).
+
+  Gough Island is a small, isolated island in the South Atlantic. The
+  mice on the island are considerably larger than mainland wild mice.
+  We are seeking to dissect the underlying genetic mechanisms for this
+  difference.
 }
 } }
 
@@ -39,6 +60,8 @@
 \only<3|handout 0>{\figw{Figs/gough_wholeisland.jpg}{1.0}}
 
 \note{
+  Gough Island is an isolated island in the South Atlantic, about
+  half-way between South America and Africa.
 }
 \end{frame}
 
@@ -59,8 +82,8 @@
 }
 
 \note{
-  The ``Island Rule'' is that after colonizing an island, things less
-  than 1 kg tend to get bigger and things greater than 1 kg tend to
+  The ``Island Rule'' is that after colonizing an island, animals less
+  than 1 kg tend to get bigger, and animals greater than 1 kg tend to
   get smaller.
 
   On the left are a pair of fox skulls. The larger one is a mainland
@@ -76,6 +99,7 @@
 \figh{Figs/gough_533_535.jpg}{0.6}
 
 \note{
+  This is a pair of Gough mice raised in the lab.
 }
 \end{frame}
 
@@ -84,6 +108,7 @@
 \figw{Figs/wsb_508_and_gough_535_cropped.jpg}{1}
 
 \note{
+  Here is a Gough mouse (right) next to a WSB mouse (left).
 }
 \end{frame}
 
@@ -95,6 +120,8 @@
 \only<3|handout 0>{\figw{Figs/cross3.pdf}{1.0}}
 
 \note{
+  Bret Payseur's lab is in the process of developing a set of inbred
+  strains derived from Gough mice.
 }
 \end{frame}
 
@@ -109,6 +136,15 @@
 
 
 \note{
+  In order to identify the genes that contribute to the larger size of
+  Gough mice, we're considering data from four large intercrosses,
+  each between a Gough mouse (after three generations of inbreeding)
+  and an inbred WSB mouse. There are a total of \Sexpr{nind(f2)} mice
+  from four crosses.
+
+  The mice were genotyped with the MegaMUGA SNP array. For now, we're
+  focusing on \Sexpr{totmar(f2)} SNPs that are fixed in Gough, and so
+  segregate like a standard F$_2$ intercross between inbred strains.
 }
 \end{frame}
 
