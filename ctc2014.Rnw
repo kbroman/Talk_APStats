@@ -6,6 +6,10 @@
 
 \input{Stuff/header.tex}
 
+\newcommand{\Fone}{F$_\text{1}$}
+\newcommand{\Ftwo}{F$_\text{2}$}
+
+
 % knitr options
 <<options, echo=FALSE, results="hide">>=
 library(broman) # for colors
@@ -144,11 +148,28 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
   The mice were genotyped with the MegaMUGA SNP array. For now, we're
   focusing on \Sexpr{totmar(f2)} SNPs that are fixed in Gough, and so
-  segregate like a standard F$_2$ intercross between inbred strains.
+  segregate like a standard {\Ftwo} intercross between inbred strains.
 }
 \end{frame}
 
 
+\begin{frame}[c]{
+  \only<1>{Growth curves}
+  \only<2|handout 0>{{\Fone} males}
+  \only<3|handout 0>{{\Fone} females}
+  \only<4|handout 0>{{\Ftwo} males}
+  \only<5|handout 0>{{\Ftwo} females}
+}
+
+\only<1>{\figw{Figs/growth1.pdf}{1.0}}
+\only<2|handout 0>{\figw{Figs/growth2.pdf}{1.0}}
+\only<3|handout 0>{\figw{Figs/growth3.pdf}{1.0}}
+\only<4|handout 0>{\figw{Figs/growth4.pdf}{1.0}}
+\only<5|handout 0>{\figw{Figs/growth5.pdf}{1.0}}
+
+\note{
+}
+\end{frame}
 
 
 \end{document}
