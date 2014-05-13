@@ -188,6 +188,25 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
+
+
+\begin{frame}{Summary}
+  
+\bbi
+\item Multiple QTL controlling body size in Gough $\times$ WSB.
+\item Gough alleles result in increased size.
+\item The major effects are on growth rate in first five weeks.
+\item Little evidence of QTL $\times$ sex or QTL $\times$ cross interactions.
+\ei
+
+
+\note{
+  A summary of the main points.
+}
+\end{frame}
+
+
+
 \begin{frame}{Acknowledgments}
 
 \vspace{18pt}
@@ -207,7 +226,7 @@ Peter Ryan &
 
 \vfill
 
-{\hilit NIGMS/NIH}
+NIGMS/NIH
 
 
 
