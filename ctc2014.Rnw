@@ -162,7 +162,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \note{
   We don't have too much data on the body weights of the Gough and WSB
   parents, but they do show large differences.
-  
+
   We've measured body weight for each {\Ftwo} mouse, weekly, at ages
   1{\textendash}16 weeks. There is a large sex difference and
   considerable individual variation.
@@ -180,7 +180,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
   The estimated growth rate (the first derivatives of the body weight
   curves) are particularly interesting: high initial rate that slows
   during weeks 4{\textendash}7 and then is flat thereafter.
-  
+
   The estimated average growth rates for the Gough and WSB parents are
   quite noisy, but it does seem that the biggest differences are in
   the initial growth, in weeks 1{\textendash}5.
@@ -191,7 +191,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 
 \begin{frame}{Summary}
-  
+
 \bbi
 \item Multiple QTL controlling body size in Gough $\times$ WSB.
 \item Gough alleles result in increased size.
