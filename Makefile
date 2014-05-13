@@ -1,10 +1,11 @@
 TALK = ctc2014
 
-${TALK}.pdf: ${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf
-	xelatex ${TALK}
+${TALK}.pdf: DerivedFiles/${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf
+	cd DerivedFiles;xelatex ${TALK}
+	mv DerivedFiles/${TALK}.pdf .
 
-${TALK}.tex: ${TALK}.Rnw
-	R -e 'library(knitr);knit("${TALK}.Rnw")'
+DerivedFiles/${TALK}.tex: ${TALK}.Rnw
+	cd DerivedFiles;R -e 'library(knitr);knit("../${TALK}.Rnw")'
 
 Figs/cross1.pdf: R/plot_crosses.R
 	cd R;R CMD BATCH plot_crosses.R
@@ -19,14 +20,16 @@ notes: ${TALK}_withnotes.pdf
 pdf: ${TALK}.pdf notes
 all: ${TALK}.pdf notes web dropbox
 
-${TALK}_withnotes.pdf: ${TALK}_withnotes.tex Stuff/header.tex
-	xelatex ${TALK}_withnotes
-	pdfnup ${TALK}_withnotes.pdf --nup 1x2 --no-landscape --paper letterpaper --frame true --scale 0.9
-	mv ${TALK}_withnotes-nup.pdf ${TALK}_withnotes.pdf
+${TALK}_withnotes.pdf: DerivedFiles/${TALK}_withnotes.tex Stuff/header.tex
+	cd DerivedFiles;xelatex ${TALK}_withnotes
+	cd DerivedFiles;pdfnup ${TALK}_withnotes.pdf --nup 1x2 --no-landscape --paper letterpaper --frame true --scale 0.9
+	mv DerivedFiles/${TALK}_withnotes-nup.pdf ${TALK}_withnotes.pdf
+	rm DerivedFiles/${TALK}_withnotes.pdf
 
-${TALK}_withnotes.tex: ${TALK}.tex Stuff/Ruby/createVersionWithNotes.rb
-	Stuff/Ruby/createVersionWithNotes.rb ${TALK}.tex ${TALK}_withnotes.tex
+DerivedFiles/${TALK}_withnotes.tex: DerivedFiles/${TALK}.tex Stuff/Ruby/createVersionWithNotes.rb
+	Stuff/Ruby/createVersionWithNotes.rb DerivedFiles/${TALK}.tex DerivedFiles/${TALK}_withnotes.tex
 
 clean:
-	rm *.aux *.log *.nav *.out *.snm *.toc *.vrb
+	rm DerivedFiles/*
+	cd DerivedFiles;ln -s ../Figs;ln -s ../Stuff
 
