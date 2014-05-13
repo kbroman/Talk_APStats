@@ -190,6 +190,29 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 
 
+\begin{frame}[c]{\href{iplot_bodyweight.html}{\color{title} Genome scan for body weight}}
+
+
+\figw{Figs/iplot_bodyweight.png}{1.0}
+
+\note{
+}
+\end{frame}
+
+
+
+
+\begin{frame}[c]{\href{iplot_deriv_bodyweight.html}{\color{title} Genome scan for growth rate}}
+
+\figw{Figs/iplot_deriv_bodyweight.png}{1.0}
+
+\note{
+}
+\end{frame}
+
+
+
+
 \begin{frame}{Summary}
 
 {\small
