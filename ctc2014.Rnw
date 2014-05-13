@@ -188,4 +188,33 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
+\begin{frame}{Acknowledgments}
+
+\vspace{18pt}
+
+\begin{tabular}{@{}l@{\hspace{1cm}}l@{}}
+Bret Payseur & \footnotesize \lolit University of Wisconsin{\textendash}Madison \\
+Melissa Gray \\
+Michelle Parmenter \\
+Caley Hogan \\
+Irene Ford \\[18pt]
+Richard Cuthbert &
+\footnotesize \lolit Royal Society for the Protection of Birds \\[18pt]
+Peter Ryan &
+\footnotesize \lolit Percy FitzPatrick Institute of African \\
+& \footnotesize \lolit Ornithology, University of Cape Town
+\end{tabular}
+
+\vfill
+
+{\hilit NIGMS/NIH}
+
+
+
+
+
+\note{}
+\end{frame}
+
+
 \end{document}
