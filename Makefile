@@ -1,6 +1,6 @@
 TALK = ctc2014
 
-${TALK}.pdf: DerivedFiles/${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf
+${TALK}.pdf: DerivedFiles/${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf html
 	cd DerivedFiles;xelatex ${TALK}
 	mv DerivedFiles/${TALK}.pdf .
 
@@ -28,6 +28,9 @@ ${TALK}_withnotes.pdf: DerivedFiles/${TALK}_withnotes.tex Stuff/header.tex
 
 DerivedFiles/${TALK}_withnotes.tex: DerivedFiles/${TALK}.tex Stuff/Ruby/createVersionWithNotes.rb
 	Stuff/Ruby/createVersionWithNotes.rb DerivedFiles/${TALK}.tex DerivedFiles/${TALK}_withnotes.tex
+
+html: R/iplot.R
+	cd R;R CMD BATCH iplot.R
 
 clean:
 	rm DerivedFiles/*

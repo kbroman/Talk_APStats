@@ -9,3 +9,4 @@ DerivedFiles/
 *.vrb
 *.tex
 *.Rout
+R/iplot_cache.RData
