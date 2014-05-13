@@ -29,7 +29,7 @@ if(file.exists(file)) {
   deffFemale <- lapply(deffFemale, function(a) -a)
   deffMale <- lapply(deffMale, function(a) -a)
   deff <- cbindQTLeffects(deffFemale, deffMale, labels=c("female", "male"))
-  outd_signed <- qtlcharts:::calcSignedLOD(outd, eff, columns=c(1,3))
+  outd_signed <- qtlcharts:::calcSignedLOD(outd, deff, columns=c(1,3))
 
   save(outsm_signed, eff, outd_signed, deff, file=file)
 }

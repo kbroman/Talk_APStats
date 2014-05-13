@@ -1,6 +1,8 @@
 TALK = ctc2014
 
-${TALK}.pdf: DerivedFiles/${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf html
+all: ${TALK}.pdf notes html
+
+${TALK}.pdf: DerivedFiles/${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf
 	cd DerivedFiles;xelatex ${TALK}
 	mv DerivedFiles/${TALK}.pdf .
 
@@ -18,7 +20,6 @@ Figs/rate1.pdf: R/growth_rate.R
 
 notes: ${TALK}_withnotes.pdf
 pdf: ${TALK}.pdf notes
-all: ${TALK}.pdf notes web dropbox
 
 ${TALK}_withnotes.pdf: DerivedFiles/${TALK}_withnotes.tex Stuff/header.tex
 	cd DerivedFiles;xelatex ${TALK}_withnotes
