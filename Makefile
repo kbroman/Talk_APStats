@@ -30,7 +30,9 @@ ${TALK}_withnotes.pdf: DerivedFiles/${TALK}_withnotes.tex Stuff/header.tex
 DerivedFiles/${TALK}_withnotes.tex: DerivedFiles/${TALK}.tex Stuff/Ruby/createVersionWithNotes.rb
 	Stuff/Ruby/createVersionWithNotes.rb DerivedFiles/${TALK}.tex DerivedFiles/${TALK}_withnotes.tex
 
-html: R/iplot.R
+html: iplot_bodyweight.html
+
+iplot_bodyweight.html: R/iplot.R
 	cd R;R CMD BATCH iplot.R
 
 clean:
