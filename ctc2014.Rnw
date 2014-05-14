@@ -196,6 +196,19 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \figw{Figs/iplot_bodyweight.png}{1.0}
 
 \note{
+  These are the results of genome scans for body weight, considering
+  each time point individually. It is a snapshot of an interactive
+  graph produced with R/qtlcharts {\tt bit.ly/rqtlcharts}.
+
+  The top-left panel is a heat map of the LOD scores for selected
+  chromosomes, with red indicating that the Gough allele causes
+  increased body weight and blue indicating that the Gough allele
+  causes decreased body weight. In the interactive version, if you
+  hover over a point in the top-left panel, the LOD curves at that
+  time point are shown below, and the estimated QTL effects as a
+  function of time are shown on the right.
+
+  Strong QTL are seen on chr 7 and 10.
 }
 \end{frame}
 
@@ -207,6 +220,10 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \figw{Figs/iplot_deriv_bodyweight.png}{1.0}
 
 \note{
+  These are analogous results to the previous slide, but for growth
+
+  The QTL on chr 7 and 10 are seen to affect growth rate in weeks
+  2{\textendash}5.
 }
 \end{frame}
 
