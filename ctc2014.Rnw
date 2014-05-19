@@ -234,7 +234,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 {\small
 \bbi
-\item Multiple QTL controlling body size in Gough $\times$ WSB.
+\item Multiple QTL contributing to body size in Gough $\times$ WSB.
 \item Gough alleles result in increased size.
 \item The major effects are on growth rate in first five weeks.
 \item Interactive graphs with R/qtlcharts,
