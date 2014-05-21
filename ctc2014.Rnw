@@ -47,6 +47,10 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \frame{
   \titlepage
 
+\vspace{-40pt}
+
+\centerline{\href{http://bit.ly/CTC2014}{\tt \scriptsize bit.ly/CTC2014}}
+
 \note{
   This is a collaboration with Bret Payseur (Genetics, UW-Madison).
 
