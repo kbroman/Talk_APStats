@@ -70,6 +70,15 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
+\begin{frame}[c]{Big mice}
+  
+\only<1>{\figw{Figs/capybara.jpg}{0.9}}
+\only<2>{\figw{Figs/rodents_of_unusual_size.jpg}{1}}
+\only<3>{\figw{Figs/gough_mouse_with_bird.jpg}{1}}
+
+\note{
+  }
+\end{frame}
 
 
 \begin{frame}[c]{The Island Rule}
