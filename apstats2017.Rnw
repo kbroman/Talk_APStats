@@ -365,7 +365,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 
 
-\begin{frame}[c]{\href{https://www.biostat.wisc.edu/~kbroman/presentations/APStats2017/perm_test}{\color{title} Permutation Test}}
+\begin{frame}[c]{\href{https://www.biostat.wisc.edu/~kbroman/presentations/APStats2017/perm_test}{\color{title} Permutation test}}
 
 \figw{Figs/perm_test.png}{0.9}
 
@@ -382,7 +382,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 \begin{frame}[c]{Permutation test}
 
-\figh{Figs/permtest_hist.pdf}{0.9}
+\figw{Figs/permtest_hist.pdf}{0.9}
 
 \note{
   Here's a histogram of the results of a permutation test with 10,000 replicates.
