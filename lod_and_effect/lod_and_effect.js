@@ -3,7 +3,7 @@
   var draw;
 
   draw = function(data) {
-    var XaxisGrp, YaxisGrp, average, botLw, botRw, botlodcurve, botsvg, bottom, chrColor, chrEnd, chrGap, chrLength, chrPixelEnd, chrPixelStart, chrRect, chrStart, cur, currentMax, curves, darkGray, dotsAtMarkers, effMax, effMin, effectPlot, efftip, g, h, hInner, i, i1, indtip, initialPXG, innerPad, j, j1, jitter, jitterAmount, k, k1, l, l1, lastChr, left, len, len1, len2, len3, len4, len5, len6, lightGray, lo, lod, lodcurve, m, mar, markerClick, markerTicks, martip, maxLod, maxLodByChr, maxLodByChr_marker, me, n, nLabels, nTicks, o, onedig, p, pad, pheMax, pheMin, pink, pos, purple, q, r, randomChr, randomDraw, randomMarker, ref, ref1, ref2, ref3, ref4, ref5, ref6, results, revPXG, right, s, se, sex, svgs, t, tickHeight, title, top, topsvg, totalChrLength, u, up, v, w, wInner, xScale, xlab, xpos, y, yScale, ylab;
+    var XaxisGrp, YaxisGrp, average, botLw, botRw, botlodcurve, botsvg, bottom, chrColor, chrEnd, chrGap, chrLength, chrPixelEnd, chrPixelStart, chrRect, chrStart, cur, currentMax, curves, darkGray, dotsAtMarkers, effMax, effMin, effectPlot, efftip, g, h, hInner, i, i1, indtip, initialPXG, innerPad, j, j1, jitter, jitterAmount, k, k1, l, lastChr, left, len, len1, len2, len3, len4, len5, lightGray, lo, lod, lodcurve, m, mar, markerClick, markerTicks, martip, maxLod, maxLodByChr, maxLodByChr_marker, me, n, nLabels, nTicks, o, onedig, p, pad, pheMax, pheMin, pink, pos, purple, q, r, randomChr, randomDraw, randomMarker, ref, ref1, ref2, ref3, ref4, ref5, results, revPXG, right, s, se, sex, svgs, t, tickHeight, title, top, topsvg, totalChrLength, u, up, v, w, wInner, xScale, xlab, xpos, y, yScale, ylab;
     w = 1200;
     h = 450;
     botLw = 600;
@@ -52,19 +52,10 @@
     for (j = o = 0; o <= 3; j = ++o) {
       svgs[j].append("rect").attr("x", left[j]).attr("y", top[j]).attr("height", hInner[j]).attr("width", wInner[j]).attr("class", "innerBox");
     }
-    for (m in data.markerindex["X"]) {
-      ref = data.sex;
-      for (i = p = 0, len = ref.length; p < len; i = ++p) {
-        sex = ref[i];
-        if (sex === 0) {
-          data.geno[m][i] = 3 - data.geno[m][i];
-        }
-      }
-    }
     maxLod = 0;
-    ref1 = data.chr;
-    for (q = 0, len1 = ref1.length; q < len1; q++) {
-      i = ref1[q];
+    ref = data.chr;
+    for (p = 0, len = ref.length; p < len; p++) {
+      i = ref[p];
       currentMax = d3.max(data.lod[i].lod);
       if (maxLod < currentMax) {
         maxLod = currentMax;
@@ -72,9 +63,9 @@
     }
     maxLodByChr = {};
     maxLodByChr_marker = {};
-    ref2 = data.chr;
-    for (r = 0, len2 = ref2.length; r < len2; r++) {
-      i = ref2[r];
+    ref1 = data.chr;
+    for (q = 0, len1 = ref1.length; q < len1; q++) {
+      i = ref1[q];
       maxLodByChr[i] = 0;
       maxLodByChr[i] = "";
       for (m in data.markerindex[i]) {
@@ -111,9 +102,9 @@
     chrEnd = {};
     chrLength = {};
     totalChrLength = 0;
-    ref3 = data.chr;
-    for (s = 0, len3 = ref3.length; s < len3; s++) {
-      i = ref3[s];
+    ref2 = data.chr;
+    for (r = 0, len2 = ref2.length; r < len2; r++) {
+      i = ref2[r];
       chrStart[i] = d3.min(data.lod[i].pos);
       chrEnd[i] = d3.max(data.lod[i].pos);
       chrLength[i] = chrEnd[i] - chrStart[i];
@@ -122,9 +113,9 @@
     chrPixelStart = {};
     chrPixelEnd = {};
     cur = Math.round(pad.left + chrGap / 2);
-    ref4 = data.chr;
-    for (t = 0, len4 = ref4.length; t < len4; t++) {
-      i = ref4[t];
+    ref3 = data.chr;
+    for (s = 0, len3 = ref3.length; s < len3; s++) {
+      i = ref3[s];
       chrPixelStart[i] = cur;
       chrPixelEnd[i] = cur + Math.round((wInner[0] - chrGap * data.chr.length) / totalChrLength * chrLength[i]);
       cur = chrPixelEnd[i] + chrGap;
@@ -136,9 +127,9 @@
     xScale[0] = {};
     xScale[1] = {};
     chrColor = {};
-    ref5 = data.chr;
-    for (u = 0, len5 = ref5.length; u < len5; u++) {
-      i = ref5[u];
+    ref4 = data.chr;
+    for (t = 0, len4 = ref4.length; t < len4; t++) {
+      i = ref4[t];
       xScale[0][i] = d3.scale.linear().domain([chrStart[i], chrEnd[i]]).range([chrPixelStart[i], chrPixelEnd[i]]);
       xScale[1][i] = d3.scale.linear().domain([0, chrEnd[i]]).range([left[1] + innerPad, right[1] - innerPad]);
       if (i % 2) {
@@ -150,25 +141,25 @@
     yScale[2] = d3.scale.linear().domain([effMin, effMax]).range([bottom[2] - innerPad, top[2] + innerPad]);
     yScale[3] = d3.scale.linear().domain([pheMin, pheMax]).range([bottom[3] - innerPad, top[3] + innerPad]);
     average = function(x) {
-      var len6, sum, v, xv;
+      var len5, sum, u, xv;
       sum = 0;
-      for (v = 0, len6 = x.length; v < len6; v++) {
-        xv = x[v];
+      for (u = 0, len5 = x.length; u < len5; u++) {
+        xv = x[u];
         sum += xv;
       }
       return sum / x.length;
     };
     effectPlot = function(chr, mar) {
-      var aves, effplot, femaleloc2, femaleloc3, genotypes, hi, len6, male, maleloc2, maleloc3, mean, ref6, v, y;
+      var aves, effplot, femaleloc2, femaleloc3, genotypes, hi, len5, male, maleloc2, maleloc3, mean, ref5, u, v;
       botsvg.selectAll(".effectplot").remove();
       mean = [];
       lo = [];
       hi = [];
       male = [];
       genotypes = [];
-      ref6 = ["Female", "Male"];
-      for (v = 0, len6 = ref6.length; v < len6; v++) {
-        sex = ref6[v];
+      ref5 = ["Female", "Male"];
+      for (u = 0, len5 = ref5.length; u < len5; u++) {
+        sex = ref5[u];
         for (g in data.effects[mar].Means) {
           me = data.effects[mar].Means[g][sex];
           se = data.effects[mar].SEs[g][sex];
@@ -182,8 +173,8 @@
         }
       }
       if (chr === "X") {
-        genotypes[0] = "BR";
-        genotypes[1] = "RR";
+        genotypes[0] = "GG";
+        genotypes[1] = "GWf";
       }
       xScale[2] = d3.scale.ordinal().domain(d3.range(mean.length)).rangePoints([left[2], right[2]], 1);
       xScale[3] = d3.scale.ordinal().domain(d3.range(mean.length)).rangePoints([left[3], right[3]], 1);
@@ -201,7 +192,7 @@
         }
       }
       aves = [[average(femaleloc2), average(maleloc2)], [average(femaleloc3), average(maleloc3)]];
-      for (j = y = 2; y <= 3; j = ++y) {
+      for (j = v = 2; v <= 3; j = ++v) {
         XaxisGrp[j].selectAll("line").remove();
         XaxisGrp[j].selectAll("text").remove();
         XaxisGrp[j].selectAll("empty").data(d3.range(mean.length)).enter().append("line").attr("y1", top[j]).attr("y2", bottom[j]).attr("x1", function(td) {
@@ -256,14 +247,14 @@
     }).attr("stroke", "none");
     XaxisGrp = [];
     YaxisGrp = [];
-    for (j = v = 0; v <= 3; j = ++v) {
+    for (j = u = 0; u <= 3; j = ++u) {
       XaxisGrp[j] = svgs[j].append("g").attr("id", "Xaxis" + j).attr("class", "axis");
       YaxisGrp[j] = svgs[j].append("g").attr("id", "Yaxis" + j).attr("class", "axis");
     }
     markerTicks = svgs[1].append("g").attr("id", "markerTickGrp");
     nTicks = [10, 10, 6, 6];
     nLabels = [6, 6, 6, 6];
-    for (j = y = 0; y <= 3; j = ++y) {
+    for (j = v = 0; v <= 3; j = ++v) {
       YaxisGrp[j].selectAll("empty").data(yScale[j].ticks(nTicks[j])).enter().append("line").attr("y1", function(d) {
         return yScale[j](d);
       }).attr("y2", function(d) {
@@ -280,12 +271,12 @@
     }
     ylab = ["LOD score", "LOD score", data.phenotype, data.phenotype];
     xpos = [pad.left / 2, pad.left / 2, left[2] - pad.left * 0.8, left[3] - pad.left * 0.8];
-    for (j = i1 = 0; i1 <= 3; j = ++i1) {
+    for (j = y = 0; y <= 3; j = ++y) {
       YaxisGrp[j].append("text").text(ylab[j]).attr("x", xpos[j]).attr("y", (top[j] + bottom[j]) / 2).attr("transform", "rotate(270," + xpos[j] + "," + ((top[j] + bottom[j]) / 2) + ")").attr("fill", "darkslateblue");
     }
     topsvg.append("text").text(data.phenotype).attr("x", (left[0] + right[0]) / 2).attr("y", pad.top / 2).attr("fill", "darkslateblue");
     xlab = ["Chromosome", "Position (cM)"];
-    for (j = j1 = 0; j1 <= 1; j = ++j1) {
+    for (j = i1 = 0; i1 <= 1; j = ++i1) {
       XaxisGrp[j].append("text").text(xlab[j]).attr("x", (left[j] + right[j]) / 2).attr("y", bottom[j] + pad.bottom * 0.65).attr("fill", "darkslateblue");
     }
     lodcurve = function(j) {
@@ -296,9 +287,9 @@
       });
     };
     curves = topsvg.append("g").attr("id", "curves");
-    ref6 = data.chr;
-    for (k1 = 0, len6 = ref6.length; k1 < len6; k1++) {
-      j = ref6[k1];
+    ref5 = data.chr;
+    for (j1 = 0, len5 = ref5.length; j1 < len5; j1++) {
+      j = ref5[j1];
       curves.append("path").datum(data.lod[j].pos).attr("d", lodcurve(j)).attr("class", "thickline").attr("stroke", "darkslateblue").style("pointer-events", "none");
     }
     botlodcurve = function(j) {
@@ -319,7 +310,7 @@
         g = Math.abs(data.geno[marker][i]);
         sx = data.sex[i];
         if (chr === "X") {
-          return xScale[3](sx * 2 + g - 1) + jitter[i];
+          return xScale[3](g - 1) + jitter[i];
         }
         return xScale[3](sx * 3 + g - 1) + jitter[i];
       }).attr("cy", function(d) {
@@ -356,7 +347,7 @@
         g = Math.abs(data.geno[marker][i]);
         sx = data.sex[i];
         if (chr === "X") {
-          return xScale[3](sx * 2 + g - 1) + jitter[i];
+          return xScale[3](g - 1) + jitter[i];
         }
         return xScale[3](sx * 3 + g - 1) + jitter[i];
       }).attr("fill", function(d, i) {
@@ -404,11 +395,11 @@
     }).attr("class", "d3-tip").attr("id", "efftip");
     markerClick = [];
     dotsAtMarkers = function(chr) {
-      var l1, lastMarker, len7, markerCircle, ref7;
+      var k1, lastMarker, len6, markerCircle, ref6;
       markerClick = {};
-      ref7 = data.markers[chr];
-      for (l1 = 0, len7 = ref7.length; l1 < len7; l1++) {
-        m = ref7[l1];
+      ref6 = data.markers[chr];
+      for (k1 = 0, len6 = ref6.length; k1 < len6; k1++) {
+        m = ref6[k1];
         markerClick[m] = 0;
       }
       markerClick[randomMarker] = 1;
@@ -513,7 +504,7 @@
       return Math.floor((chrPixelStart[d] + chrPixelEnd[d]) / 2);
     }).attr("y", bottom[0] + pad.bottom * 0.3);
     results = [];
-    for (j = l1 = 0; l1 <= 3; j = ++l1) {
+    for (j = k1 = 0; k1 <= 3; j = ++k1) {
       results.push(svgs[j].append("rect").attr("x", left[j]).attr("y", top[j]).attr("height", hInner[j]).attr("width", wInner[j]).attr("class", "outerBox"));
     }
     return results;

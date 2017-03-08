@@ -50,6 +50,10 @@ markers <- lapply(mar, names)
 phevals <- f2$pheno$weight
 f2i <- pull.geno(fill.geno(f2, err=0.002, map.function="c-f"))
 g <- pull.geno(f2)
+xmar <- markernames(f2, chr="X")
+g[,xmar] <- reviseXdata("f2", "full", getsex(f2), geno=g[,xmar], cross.attr=attributes(f2))
+f2i[,xmar] <- reviseXdata("f2", "full", getsex(f2), geno=f2i[,xmar], cross.attr=attributes(f2))
+
 f2i[is.na(g) | f2i != g] <- -f2i[is.na(g) | f2i != g]
 f2i <- as.list(as.data.frame(f2i))
 individuals <- as.character(f2$pheno$ID)
