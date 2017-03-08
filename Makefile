@@ -1,4 +1,4 @@
-TALK = ctc2014
+TALK = apstats2017
 
 all: ${TALK}.pdf notes html
 
@@ -39,3 +39,5 @@ clean:
 	rm DerivedFiles/*
 	cd DerivedFiles;ln -s ../Figs;ln -s ../Stuff
 
+web: iplot_bodyweight.html ${TALK}.pdf ${TALK}_withnotes.pdf
+	scp iplot_bodyweight.html iplot_deriv_bodyweight.html ${TALK}.pdf ${TALK}_withnotes.pdf broman-10.biostat.wisc.edu:Website/presentations/APStats2017/

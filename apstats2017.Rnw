@@ -1,0 +1,294 @@
+\documentclass[12pt,t]{beamer}
+\usepackage{graphicx}
+\setbeameroption{hide notes}
+\setbeamertemplate{note page}[plain]
+\usepackage{listings}
+
+\input{Stuff/header.tex}
+
+\newcommand{\Fone}{F$_\text{1}$}
+\newcommand{\Ftwo}{F$_\text{2}$}
+
+
+% knitr options
+<<options, echo=FALSE, results="hide">>=
+library(broman) # for colors
+opts_chunk$set(echo=FALSE, results="hide", echo=FALSE,
+               fig.path="MoreFigs/", verbose=TRUE,
+               fig.height=6.5, fig.width=10,
+               fig.align="center")
+library(broman)
+@
+
+<<load_data>>=
+load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
+@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% end of header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Genetics of extreme body size evolution in mice from Gough Island}
+\subtitle{}
+\author{\href{http://www.biostat.wisc.edu/~kbroman}{Karl Broman}}
+\institute{Biostatistics \& Medical Informatics, UW{\textendash}Madison}
+\date{\href{http://www.biostat.wisc.edu/~kbroman}{\tt \scriptsize \color{foreground} biostat.wisc.edu/{\textasciitilde}kbroman}
+\\[-4pt]
+\href{http://github.com/kbroman}{\tt \scriptsize \color{foreground} github.com/kbroman}
+\\[-4pt]
+\href{https://twitter.com/kwbroman}{\tt \scriptsize \color{foreground} @kwbroman}
+}
+
+\begin{document}
+
+{
+\setbeamertemplate{footline}{} % no page number here
+\frame{
+  \titlepage
+
+\vspace{-40pt}
+
+\centerline{\href{http://bit.ly/CTC2014}{\tt \scriptsize bit.ly/CTC2014}}
+
+\note{
+  This is a collaboration with Bret Payseur (Genetics, UW-Madison).
+
+  Gough Island is a small, isolated island in the South Atlantic. The
+  mice on the island are considerably larger than mainland wild mice.
+  We are seeking to dissect the underlying genetic mechanisms for this
+  difference.
+}
+} }
+
+\begin{frame}[c]{Gough Island}
+
+\only<1|handout 0>{\figh{Figs/Gough_google_earth.png}{0.8}}
+\only<2>{\figh{Figs/Gough-Island-Map.png}{0.8}}
+\only<3|handout 0>{\figw{Figs/gough_wholeisland.jpg}{1.0}}
+
+\note{
+  Gough Island is an isolated island in the South Atlantic, about
+  half-way between South America and Africa.
+}
+\end{frame}
+
+
+\begin{frame}[c]{Big rodents}
+  
+\only<1>{\figw{Figs/capybara.jpg}{0.9}}
+\only<2>{\figw{Figs/rodents_of_unusual_size.jpg}{1}}
+\only<3>{\figw{Figs/gough_mouse_with_bird.jpg}{1}}
+
+\note{
+  }
+\end{frame}
+
+
+\begin{frame}[c]{The Island Rule}
+
+
+\centerline{
+\begin{minipage}[t]{50mm}
+\includegraphics[height=50mm]{Figs/fox_skulls.png}
+\end{minipage}
+\hspace*{5mm}
+\begin{minipage}[t]{50mm}
+\includegraphics[height=50mm]{Figs/jays.png}
+\end{minipage}
+}
+
+\note{
+  The ``Island Rule'' is that after colonizing an island, animals less
+  than 1 kg tend to get bigger, and animals greater than 1 kg tend to
+  get smaller.
+
+  On the left are a pair of fox skulls. The larger one is a mainland
+  fox; the smaller one is an island fox.
+
+  On the right are a pair of scrub jays. The smaller one is a mainland
+  jay; the smaller one is an island jay.
+}
+\end{frame}
+
+\begin{frame}[c]{Gough mice}
+
+\figh{Figs/gough_533_535.jpg}{0.6}
+
+\note{
+  This is a pair of Gough mice raised in the lab.
+}
+\end{frame}
+
+\begin{frame}[c]{WSB and Gough mice}
+
+\figw{Figs/wsb_508_and_gough_535_cropped.jpg}{1}
+
+\note{
+  Here is a WSB mouse (left) next to a Gough mouse (right).
+}
+\end{frame}
+
+
+\begin{frame}[c]{Partially-inbred Gough lines}
+
+\only<1>{\figw{Figs/cross1.pdf}{1.0}}
+\only<2|handout 0>{\figw{Figs/cross2.pdf}{1.0}}
+\only<3|handout 0>{\figw{Figs/cross3.pdf}{1.0}}
+
+\note{
+  Bret Payseur's lab is in the process of developing a set of inbred
+  strains derived from Gough mice.
+}
+\end{frame}
+
+
+\begin{frame}[c]{Gough $\times$ WSB crosses}
+
+\only<1>{\figw{Figs/cross4.pdf}{1.0}}
+\only<2|handout 0>{\figw{Figs/cross5.pdf}{1.0}}
+\only<3|handout 0>{\figw{Figs/cross6.pdf}{1.0}}
+\only<4|handout 0>{\figw{Figs/cross7.pdf}{1.0}}
+\only<5|handout 0>{\figw{Figs/cross8.pdf}{1.0}}
+
+
+\note{
+  In order to identify the genes that contribute to the larger size of
+  Gough mice, we're considering data from four large intercrosses,
+  each between a Gough mouse (after three generations of inbreeding)
+  and an inbred WSB mouse. There are a total of \Sexpr{nind(f2)} mice
+  from four crosses.
+
+  The mice were genotyped with the MegaMUGA SNP array. For now, we're
+  focusing on \Sexpr{totmar(f2)} SNPs that are fixed in Gough, and so
+  segregate like a standard {\Ftwo} intercross between inbred strains.
+}
+\end{frame}
+
+
+\begin{frame}[c]{Growth curves}
+
+\only<1|handout 0>{\figw{Figs/growth1.pdf}{1.0}}
+\only<2|handout 0>{\figw{Figs/growth2.pdf}{1.0}}
+\only<3>{\figw{Figs/growth3.pdf}{1.0}}
+
+\note{
+  We don't have too much data on the body weights of the Gough and WSB
+  parents, but they do show large differences.
+
+  We've measured body weight for each {\Ftwo} mouse, weekly, at ages
+  1{\textendash}16 weeks. There is a large sex difference and
+  considerable individual variation.
+}
+\end{frame}
+
+
+\begin{frame}[c]{Growth rate}
+
+\only<1|handout 0>{\figw{Figs/rate1.pdf}{1.0}}
+\only<2|handout 0>{\figw{Figs/rate2.pdf}{1.0}}
+\only<3>{\figw{Figs/rate3.pdf}{1.0}}
+
+\note{
+  The estimated growth rate (the first derivatives of the body weight
+  curves) are particularly interesting: high initial rate that slows
+  during weeks 4{\textendash}7 and then is flat thereafter.
+
+  The estimated average growth rates for the Gough and WSB parents are
+  quite noisy, but it does seem that the biggest differences are in
+  the initial growth, in weeks 1{\textendash}5.
+}
+\end{frame}
+
+
+
+
+\begin{frame}[c]{\href{iplot_bodyweight.html}{\color{title} Genome scan for body weight}}
+
+
+\figw{Figs/iplot_bodyweight.png}{1.0}
+
+\note{
+  These are the results of genome scans for body weight, considering
+  each time point individually. It is a snapshot of an interactive
+  graph produced with R/qtlcharts {\tt bit.ly/rqtlcharts}.
+
+  The top-left panel is a heat map of the LOD scores for selected
+  chromosomes, with red indicating that the Gough allele causes
+  increased body weight and blue indicating that the Gough allele
+  causes decreased body weight. In the interactive version, if you
+  hover over a point in the top-left panel, the LOD curves at that
+  time point are shown below, and the estimated QTL effects as a
+  function of time are shown on the right.
+
+  Strong QTL are seen on chr 7 and 10.
+}
+\end{frame}
+
+
+
+
+\begin{frame}[c]{\href{iplot_deriv_bodyweight.html}{\color{title} Genome scan for growth rate}}
+
+\figw{Figs/iplot_deriv_bodyweight.png}{1.0}
+
+\note{
+  These are analogous results to the previous slide, but for growth
+
+  The QTL on chr 7 and 10 are seen to affect growth rate in weeks
+  2{\textendash}5.
+}
+\end{frame}
+
+
+
+
+\begin{frame}{Summary}
+
+{\small
+\bbi
+\item Multiple QTL contributing to body size in Gough $\times$ WSB.
+\item Gough alleles result in increased size.
+\item The major effects are on growth rate in first five weeks.
+\item Interactive graphs with R/qtlcharts,
+  \href{http://kbroman.github.io/qtlcharts}{\tt bit.ly/rqtlcharts}
+\ei
+}
+
+\note{
+  A summary of the main points.
+}
+\end{frame}
+
+
+
+\begin{frame}{Acknowledgments}
+
+\vspace{18pt}
+
+\begin{tabular}{@{}l@{\hspace{1cm}}l@{}}
+Bret Payseur & \footnotesize \lolit University of Wisconsin{\textendash}Madison \\
+Melissa Gray \\
+Michelle Parmenter \\
+Caley Hogan \\
+Irene Ford \\[18pt]
+Richard Cuthbert &
+\footnotesize \lolit Royal Society for the Protection of Birds \\[18pt]
+Peter Ryan &
+\footnotesize \lolit Percy FitzPatrick Institute of African \\
+& \footnotesize \lolit Ornithology, University of Cape Town
+\end{tabular}
+
+\vfill
+
+NIGMS/NIH
+
+
+
+
+
+\note{}
+\end{frame}
+
+
+\end{document}
