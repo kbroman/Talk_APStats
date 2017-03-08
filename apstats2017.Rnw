@@ -76,11 +76,14 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 \begin{frame}[c]{Big rodents}
 
-\only<1>{\figw{Figs/capybara.jpg}{0.9}}
-\only<2>{\figw{Figs/rodents_of_unusual_size.jpg}{1}}
+\only<1|handout 0>{\figw{Figs/capybara.jpg}{0.9}}
+\only<2|handout 0>{\figw{Figs/rodents_of_unusual_size.jpg}{1}}
 \only<3>{\figw{Figs/gough_mouse_with_bird.jpg}{1}}
 
 \note{
+  The mice on Gough Island are the largest wild mice on earth. And
+  they've also developed rather nasty behaviors: much of the year,
+  they eat young birds (while the birds are still alive).
   }
 \end{frame}
 
