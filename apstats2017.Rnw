@@ -107,8 +107,30 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
-\begin{frame}[c]{The Island Rule}
 
+
+\begin{frame}[c]{Leptin knockout}
+
+\figw{Figs/leptin_ko.jpg}{0.9}
+
+\note{
+  The Gough mice didn't look all that large to me, because in other
+  collaborations, I'd been studying mice whose leptin gene was knocked
+  out.
+
+  On the left is a leptin knockout; on the right is a normal lab
+  mouse.
+
+  The leptin gene is what makes you satisfied at the end of the meal.
+  With the leptin gene knocked out (so that the gene doesn't
+  function), the mice will just eat and eat and so become extremely
+  obese.
+}
+\end{frame}
+
+
+
+\begin{frame}[c]{The Island Rule}
 
 \centerline{
 \begin{minipage}[t]{50mm}
