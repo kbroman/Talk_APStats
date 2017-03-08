@@ -380,7 +380,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 
 
-\begin{frame}[c]{Permutation test}
+\begin{frame}[c]{Histogram of permutation results}
 
 \figw{Figs/permtest_hist.pdf}{0.9}
 
