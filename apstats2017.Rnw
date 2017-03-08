@@ -192,6 +192,32 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
+\begin{frame}[c]{Body weight}
+
+\only<1>{\figw{Figs/GI_v_W.pdf}{1.0}}
+\only<2|handout 0>{\figw{Figs/GI_v_W_2.pdf}{1.0}}
+
+
+\note{
+  Body weight by age for the Gough and WSB mice.
+}
+\end{frame}
+
+
+
+
+\begin{frame}[c]{Growth rate}
+
+\only<1>{\figw{Figs/GI_v_W_rate.pdf}{1.0}}
+\only<2|handout 0>{\figw{Figs/GI_v_W_rate_2.pdf}{1.0}}
+
+
+\note{
+  Growth rate (g/week) by age for the Gough and WSB mice.
+}
+\end{frame}
+
+
 
 \begin{frame}[c]{Partially-inbred Gough lines}
 
