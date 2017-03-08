@@ -340,6 +340,21 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 
 
+\begin{frame}[c]{\href{https://www.biostat.wisc.edu/~kbroman/presentations/APStats2017/perm_test}{\color{title} Permutation Test}}
+
+\figw{Figs/perm_test.png}{0.9}
+
+\note{
+  This is an interactive illustration of a permutation test.
+
+  Click the ``Randomize'' button to shuffle the phenotypes and re-draw
+  the LOD curves; click the ``back'' button to go back.
+}
+\end{frame}
+
+
+
+
 \begin{frame}[c]{\href{iplot_bodyweight.html}{\color{title} Genome scan for body weight}}
 
 
