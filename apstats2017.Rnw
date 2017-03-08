@@ -31,9 +31,9 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 \title{Genetics of extreme body size evolution in mice from Gough Island}
 \subtitle{}
-\author{\href{http://www.biostat.wisc.edu/~kbroman}{Karl Broman}}
+\author{\href{http://kbroman.org}{Karl Broman}}
 \institute{Biostatistics \& Medical Informatics, UW{\textendash}Madison}
-\date{\href{http://www.biostat.wisc.edu/~kbroman}{\tt \scriptsize \color{foreground} biostat.wisc.edu/{\textasciitilde}kbroman}
+\date{\href{http://kbroman.org}{\tt \scriptsize \color{foreground} kbroman.org}
 \\[-4pt]
 \href{http://github.com/kbroman}{\tt \scriptsize \color{foreground} github.com/kbroman}
 \\[-4pt]
@@ -49,7 +49,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 \vspace{-40pt}
 
-\centerline{\href{http://bit.ly/CTC2014}{\tt \scriptsize bit.ly/CTC2014}}
+\centerline{\href{http://bit.ly/APStats2017}{\tt \scriptsize bit.ly/APStats2017}}
 
 \note{
   This is a collaboration with Bret Payseur (Genetics, UW-Madison).
@@ -75,7 +75,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 
 \begin{frame}[c]{Big rodents}
-  
+
 \only<1>{\figw{Figs/capybara.jpg}{0.9}}
 \only<2>{\figw{Figs/rodents_of_unusual_size.jpg}{1}}
 \only<3>{\figw{Figs/gough_mouse_with_bird.jpg}{1}}
