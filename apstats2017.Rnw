@@ -218,7 +218,6 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
-
 \begin{frame}[c]{Partially-inbred Gough lines}
 
 \only<1>{\figw{Figs/cross1.pdf}{1.0}}
