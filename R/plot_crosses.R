@@ -19,6 +19,7 @@ for(j in c(0, 2, 4, 6)) {
   for(i in 1:2) f1[[i+j]] <- cross(p[[j+1]],   p[[j+2]])
   for(i in 1:2) f2[[i+j]] <- cross(f1[[j+1]], f1[[j+2]])
   for(i in 1:2) f3[[i+j]] <- cross(f2[[j+1]], f2[[j+2]])
+  for(i in 1:2) f4[[i+j]] <- cross(f3[[j+1]], f3[[j+2]])
 }
 
 
@@ -28,18 +29,19 @@ par(bg=brocolors("bg"), col="white", col.axis="white",
 
 par(mar=rep(0.1, 4), bty="n")
 plot(0,0,type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-     xlim=c(0, 200), ylim=c(0, 200))
+     xlim=c(0, 200), ylim=c(0, 260))
 x <- seq(5, 195, length=11)[c(1,2,4,5,7,8,10,11)]
 xd <- diff(x[1:2])
-y <- seq(190, 10, length=4)
+y <- seq(250, 10, length=5)
 for(j in c(0,2,4,6)) {
   for(i in 1:2) {
     plot_ind(p[[i+j]], c(x[i+j], y[1]), col=mycolors, chrlength=25)
     plot_ind(f1[[i+j]], c(x[i+j], y[2]), col=mycolors, chrlength=25)
     plot_ind(f2[[i+j]], c(x[i+j], y[3]), col=mycolors, chrlength=25)
     plot_ind(f3[[i+j]], c(x[i+j], y[4]), col=mycolors, chrlength=25)
+    plot_ind(f4[[i+j]], c(x[i+j], y[5]), col=mycolors, chrlength=25)
   }
-  for(i in 1:3)
+  for(i in 1:4)
     plot_crosslines(c(x[1+j], y[i]), c(x[2+j], y[i]), chrlength=25,
                     list(c(x[1+j], y[i+1]), c(x[2+j], y[i+1])))
 }
@@ -53,21 +55,23 @@ par(bg=brocolors("bg"), col="white", col.axis="white",
 
 par(mar=rep(0.1, 4), bty="n")
 plot(0,0,type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-     xlim=c(0, 200), ylim=c(0, 200))
+     xlim=c(0, 200), ylim=c(0, 260))
 for(j in c(0,2,4,6)) {
   for(i in 1:2) {
     plot_ind(p[[i+j]], c(x[i+j], y[1]), col=mycolors, chrlength=25)
     plot_ind(f1[[i+j]], c(x[i+j], y[2]), col=mycolors, chrlength=25)
     plot_ind(f2[[i+j]], c(x[i+j], y[3]), col=mycolors, chrlength=25)
     plot_ind(f3[[i+j]], c(x[i+j], y[4]), col=mycolors, chrlength=25)
+    plot_ind(f4[[i+j]], c(x[i+j], y[5]), col=mycolors, chrlength=25)
 
     plot_ind(p[[1]], c(x[i+j], y[1]), col=graymask, chrlength=25)
     plot_ind(p[[1]], c(x[i+j], y[2]), col=graymask, chrlength=25)
     plot_ind(p[[1]], c(x[i+j], y[3]), col=graymask, chrlength=25)
+    plot_ind(p[[1]], c(x[i+j], y[4]), col=graymask, chrlength=25)
     if(j>2)
-      plot_ind(p[[1]], c(x[i+j], y[4]), col=graymask, chrlength=25)
+      plot_ind(p[[1]], c(x[i+j], y[5]), col=graymask, chrlength=25)
   }
-  for(i in 1:3) {
+  for(i in 1:4) {
     plot_crosslines(c(x[1+j], y[i]), c(x[2+j], y[i]), chrlength=25,
                     list(c(x[1+j], y[i+1]), c(x[2+j], y[i+1])),
                     col="gray40")
@@ -79,52 +83,52 @@ dev.off()
 x <- seq(5, 195, length=7)[-c(1,4,7)]
 wsbx <- c(x[1]-xd, x[2]+xd, x[3]-xd, x[4]+xd)
 
-pdf("../Figs/cross3.pdf", height=5, width=10, pointsize=18)
+pdf("../Figs/cross3.pdf", height=6.5, width=10, pointsize=18)
 par(bg=brocolors("bg"), col="white", col.axis="white",
     col.main="white", col.lab="white")
 
 par(mar=rep(0.1, 4), bty="n")
 plot(0,0,type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-     xlim=c(0, 200), ylim=c(50, 200))
+     xlim=c(0, 200), ylim=c(120, 260))
 for(j in c(0,2)) {
   for(i in 1:2)
-    plot_ind(f3[[i+j]], c(x[i+j], y[1]), col=mycolors, chrlength=25)
+    plot_ind(f4[[i+j]], c(x[i+j], y[1]), col=mycolors, chrlength=25)
 }
 
 dev.off()
 
 
 for(cr in 1:4) {
-  pdf(paste0("../Figs/cross", 3+cr, ".pdf"), height=5, width=10, pointsize=18)
+  pdf(paste0("../Figs/cross", 3+cr, ".pdf"), height=6.5, width=10, pointsize=18)
   par(bg=brocolors("bg"), col="white", col.axis="white",
       col.main="white", col.lab="white")
 
   par(mar=rep(0.1, 4), bty="n")
   plot(0,0,type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-       xlim=c(0, 200), ylim=c(50, 200))
+       xlim=c(0, 200), ylim=c(120, 260))
   for(j in c(0,2)) {
     for(i in 1:2)
-      plot_ind(f3[[i+j]], c(x[i+j], y[1]), col=mycolors, chrlength=25)
+      plot_ind(f4[[i+j]], c(x[i+j], y[1]), col=mycolors, chrlength=25)
   }
 
   xx <- c(x[cr], wsbx[cr])
   wsb <- create_parent(L, 17)
   plot_ind(wsb, c(wsbx[cr], y[1]), col=mycolors, chrlength=25)
-  if(cr %% 2) 
-    f4 <- list(cross(wsb, f3[[cr]]), cross(wsb, f3[[cr]]))
+  if(cr %% 2)
+    f5 <- list(cross(wsb, f4[[cr]]), cross(wsb, f4[[cr]]))
   else
-    f4 <- list(cross(f3[[cr]], wsb), cross(f3[[cr]], wsb))
+    f5 <- list(cross(f4[[cr]], wsb), cross(f4[[cr]], wsb))
   for(i in 1:2)
-    plot_ind(f4[[i]], c(xx[i], y[2]), col=mycolors, chrlength=25)
+    plot_ind(f5[[i]], c(xx[i], y[2]), col=mycolors, chrlength=25)
   plot_crosslines(c(xx[1], y[1]), c(xx[2], y[1]), chrlength=25,
                   list(c(xx[1], y[2]), c(xx[2], y[2])), col="white")
 
-  nf5 <- 10
-  f5 <- vector("list", nf5)
-  xn <- seq(5, 195, len=nf5)
-  for(i in 1:nf5) {
-    f5[[i]] <- cross(f4[[1]], f4[[2]])
-    plot_ind(f5[[i]], c(xn[i], y[3]), col=mycolors, chrlength=25)
+  nf6 <- 10
+  f6 <- vector("list", nf6)
+  xn <- seq(5, 195, len=nf6)
+  for(i in 1:nf6) {
+    f6[[i]] <- cross(f5[[1]], f5[[2]])
+    plot_ind(f6[[i]], c(xn[i], y[3]), col=mycolors, chrlength=25)
   }
   plot_crosslines(c(xx[1], y[2]), c(xx[2], y[2]), chrlength=25,
                   lapply(xn, function(a) c(a, y[3])), col="white")
@@ -136,26 +140,26 @@ for(cr in 1:4) {
 mycolors2 <- mycolors
 mycolors2[-length(mycolors2)] <- mycolors[2]
 
-pdf("../Figs/cross8.pdf", height=5, width=10, pointsize=18)
+pdf("../Figs/cross8.pdf", height=6.5, width=10, pointsize=18)
 par(bg=brocolors("bg"), col="white", col.axis="white",
     col.main="white", col.lab="white")
 
 par(mar=rep(0.1, 4), bty="n")
 plot(0,0,type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-     xlim=c(0, 200), ylim=c(50, 200))
+     xlim=c(0, 200), ylim=c(120, 260))
 for(j in c(0,2)) {
   for(i in 1:2)
-    plot_ind(f3[[i+j]], c(x[i+j], y[1]), col=mycolors2, chrlength=25)
+    plot_ind(f4[[i+j]], c(x[i+j], y[1]), col=mycolors2, chrlength=25)
 }
 
 plot_ind(wsb, c(wsbx[cr], y[1]), col=mycolors2, chrlength=25)
 for(i in 1:2)
-  plot_ind(f4[[i]], c(xx[i], y[2]), col=mycolors2, chrlength=25)
+  plot_ind(f5[[i]], c(xx[i], y[2]), col=mycolors2, chrlength=25)
 plot_crosslines(c(xx[1], y[1]), c(xx[2], y[1]), chrlength=25,
                 list(c(xx[1], y[2]), c(xx[2], y[2])), col="white")
 
-for(i in 1:nf5) {
-  plot_ind(f5[[i]], c(xn[i], y[3]), col=mycolors2, chrlength=25)
+for(i in 1:nf6) {
+  plot_ind(f6[[i]], c(xn[i], y[3]), col=mycolors2, chrlength=25)
 }
 plot_crosslines(c(xx[1], y[2]), c(xx[2], y[2]), chrlength=25,
                 lapply(xn, function(a) c(a, y[3])), col="white")
