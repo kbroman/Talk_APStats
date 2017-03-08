@@ -88,6 +88,25 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
+\begin{frame}[c]{Gough mice}
+
+\figh{Figs/gough_533_535.jpg}{0.6}
+
+\note{
+  This is a pair of Gough mice raised in the lab.
+}
+\end{frame}
+
+\begin{frame}[c]{WSB and Gough mice}
+
+\figw{Figs/wsb_508_and_gough_535_cropped.jpg}{1}
+
+\note{
+  Here is a WSB mouse (left) next to a Gough mouse (right).
+}
+\end{frame}
+
+
 \begin{frame}[c]{The Island Rule}
 
 
@@ -114,23 +133,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 }
 \end{frame}
 
-\begin{frame}[c]{Gough mice}
 
-\figh{Figs/gough_533_535.jpg}{0.6}
-
-\note{
-  This is a pair of Gough mice raised in the lab.
-}
-\end{frame}
-
-\begin{frame}[c]{WSB and Gough mice}
-
-\figw{Figs/wsb_508_and_gough_535_cropped.jpg}{1}
-
-\note{
-  Here is a WSB mouse (left) next to a Gough mouse (right).
-}
-\end{frame}
 
 
 \begin{frame}[c]{Partially-inbred Gough lines}
