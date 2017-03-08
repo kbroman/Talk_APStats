@@ -291,6 +291,23 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 
 
+\begin{frame}[c]{Genotypes}
+
+\figw{Figs/geno_image.png}{1.0}
+
+\note{
+  An image with a portion of the genotype data (green=Gough
+  homozygote, Yellow=heterozygote, purple=WSB homozygote).
+
+  I subsampled the genotypes to 1034 of the 11,833 total markers, and
+  showing just 200 of the 1,212 mice (the top and bottom 50, by weight
+  at 16 weeks, of each of the males and females).
+}
+\end{frame}
+
+
+
+
 \begin{frame}[c]{\href{iplot_bodyweight.html}{\color{title} Genome scan for body weight}}
 
 
