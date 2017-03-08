@@ -403,7 +403,7 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \note{
   These are the results of genome scans for body weight, considering
   each time point individually. It is a snapshot of an interactive
-  graph produced with R/qtlcharts {\tt bit.ly/rqtlcharts}.
+  graph produced with R/qtlcharts {\tt kbroman.org/qtlcharts}.
 
   The top-left panel is a heat map of the LOD scores for selected
   chromosomes, with red indicating that the Gough allele causes
@@ -439,11 +439,9 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 {\small
 \bbi
-\item Multiple QTL contributing to body size in Gough $\times$ WSB.
+\item Multiple genetic loci contribute to body size in Gough $\times$ WSB.
 \item Gough alleles result in increased size.
 \item The major effects are on growth rate in first five weeks.
-\item Interactive graphs with R/qtlcharts,
-  \href{http://kbroman.github.io/qtlcharts}{\tt bit.ly/rqtlcharts}
 \ei
 }
 
