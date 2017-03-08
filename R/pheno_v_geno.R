@@ -17,6 +17,8 @@ if(file.exists(file)) {
     save(g, phe, file=file)
 }
 
+bg <- brocolors("bg")
+
 pdf("../Figs/pheno_v_geno.pdf", height=5.5, width=10, pointsize=14)
 yli <- range(phe, na.rm=TRUE)
 par(bg=bg, fg="white", col="white", col.axis="white", col.lab="white", col.main="white")
