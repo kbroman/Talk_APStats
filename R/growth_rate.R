@@ -40,9 +40,9 @@ wmeanF <- colMeans(par_growthDeriv[par_strain==2 & par_sex==1,], na.rm=TRUE)
 f2meanM <- colMeans(growthDeriv[f2$pheno$sex=="M",], na.rm=TRUE)
 f2meanF <- colMeans(growthDeriv[f2$pheno$sex=="F",], na.rm=TRUE)
 
-pdf("../Figs/rate1.pdf", height=5, width=10, pointsize=16)
+pdf("../Figs/rate1.pdf", height=5.5, width=10, pointsize=16)
 par(bg=bg, fg="white", col="white", col.axis="white", col.lab="white", col.main="white")
-par(las=1, mar=c(4.1, 4.1, 1.1, 0.6), mfrow=c(1,2))
+par(las=1, mar=c(4.1, 4.1, 2.6, 0.6), mfrow=c(1,2))
 xat <- c(5, 10, 15)
 yat <- seq(-2, 5, by=1)
 grayplot(0,0,type="n", xlim=c(1, 16), xaxs="i", ylim=yli, yaxs="i",
@@ -70,9 +70,9 @@ lines(1:16, f2meanF, col=col[3], lwd=2)
 dev.off()
 
 
-pdf("../Figs/rate2.pdf", height=5, width=10, pointsize=16)
+pdf("../Figs/rate2.pdf", height=5.5, width=10, pointsize=16)
 par(bg=bg, fg="white", col="white", col.axis="white", col.lab="white", col.main="white")
-par(las=1, mar=c(4.1, 4.1, 1.1, 0.6), mfrow=c(1,2))
+par(las=1, mar=c(4.1, 4.1, 2.6, 0.6), mfrow=c(1,2))
 xat <- c(5, 10, 15)
 yat <- seq(-2, 5, by=1)
 grayplot(0,0,type="n", xlim=c(1, 16), xaxs="i", ylim=yli, yaxs="i",
@@ -102,9 +102,9 @@ lines(1:16, f2meanF, col=col[3], lwd=2)
 dev.off()
 
 
-pdf("../Figs/rate3.pdf", height=5, width=10, pointsize=16)
+pdf("../Figs/rate3.pdf", height=5.5, width=10, pointsize=16)
 par(bg=bg, fg="white", col="white", col.axis="white", col.lab="white", col.main="white")
-par(las=1, mar=c(4.1, 4.1, 1.1, 0.6), mfrow=c(1,2))
+par(las=1, mar=c(4.1, 4.1, 2.6, 0.6), mfrow=c(1,2))
 xat <- c(5, 10, 15)
 yat <- seq(-2, 5, by=1)
 grayplot(0,0,type="n", xlim=c(1, 16), xaxs="i", ylim=yli, yaxs="i",
