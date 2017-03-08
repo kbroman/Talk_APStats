@@ -321,6 +321,25 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 
 
+\begin{frame}[c]{\href{https://www.biostat.wisc.edu/~kbroman/presentations/APStats2017/lod_and_effect}{\color{title} Genome scan}}
+
+\figh{Figs/lod_and_effect.png}{0.85}
+
+\note{
+  Here is a plot of the scan across the genome.
+
+  Think of the test statistic, ``LOD score'', as sort of like the
+  --log$_{10}$ p-value, though really it's a log$_{10}$ likelihood
+  ratio.
+
+  This links to an interactive plot, where you can explore the
+  genotype-phenotype associations across the genome.
+}
+\end{frame}
+
+
+
+
 \begin{frame}[c]{\href{iplot_bodyweight.html}{\color{title} Genome scan for body weight}}
 
 
