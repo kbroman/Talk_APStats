@@ -306,6 +306,19 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 \end{frame}
 
 
+\begin{frame}[c]{Weight at 5 weeks vs genotype}
+
+\figw{Figs/pheno_v_geno.pdf}{1.0}
+
+\note{
+  These dotplots show phenotype versus genotype for three selected
+  markers, for body weight at 5 weeks.
+
+  Are the associations real?
+}
+\end{frame}
+
+
 
 
 \begin{frame}[c]{\href{iplot_bodyweight.html}{\color{title} Genome scan for body weight}}
