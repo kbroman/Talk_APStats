@@ -2,7 +2,7 @@ TALK = apstats2017
 
 all: ${TALK}.pdf notes html
 
-${TALK}.pdf: DerivedFiles/${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf Figs/GI_v_W.pdf Figs/geno_image.png Figs/pheno_v_geno.pdf
+${TALK}.pdf: DerivedFiles/${TALK}.tex Stuff/header.tex Figs/cross1.pdf Figs/growth1.pdf Figs/rate1.pdf Figs/GI_v_W.pdf Figs/geno_image.png Figs/pheno_v_geno.pdf Figs/permtest_illustration.pdf Figs/permtest_hist.pdf
 	cd DerivedFiles;xelatex ${TALK}
 	mv DerivedFiles/${TALK}.pdf .
 
@@ -26,6 +26,12 @@ Figs/geno_image.png: R/geno_image.R
 
 Figs/pheno_v_geno.pdf: R/pheno_v_geno.R
 	cd R;R CMD BATCH pheno_v_geno.R
+
+Figs/permtest_illustration.pdf: R/permtest_illustration.R
+	cd R;R CMD BATCH permtest_illustration.R
+
+Figs/permtest_hist.pdf: R/permtest_hist.R
+	cd R;R CMD BATCH permtest_hist.R
 
 notes: ${TALK}_withnotes.pdf
 pdf: ${TALK}.pdf notes
