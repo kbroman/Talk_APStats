@@ -13,7 +13,7 @@ for(i in names(f2$geno))
                        pickMarkerSubset(pull.map(f2, chr=i)[[1]], 0.5))
 f2 <- pull.markers(f2, marker_subset)
 f2$pheno <- cbind(weight=growthSm[,5], f2$pheno[,c("ID", "sex", "pgm")])
-
+sex <- as.numeric(f2$pheno$sex)
 
 # create matrix with original phenotypes plus
 # a bunch of permuted versions
@@ -25,7 +25,7 @@ for(i in 1:n.perm)
 colnames(phem) <- c("wt_5wks", paste0("perm", 1:n.perm))
 f2$pheno <- cbind(phem, f2$pheno[,-1,drop=FALSE])
 f2 <- calc.genoprob(f2, step=1, error.prob=0.002, map.function="c-f")
-out <- scanone(f2, phe=1:(n.perm+1), method="hk", n.cluster=parallel::detectCores())
+out <- scanone(f2, phe=1:(n.perm+1), addcovar=sex, method="hk", n.cluster=parallel::detectCores())
 
 # marker index within lod curves
 map <- pull.map(f2)

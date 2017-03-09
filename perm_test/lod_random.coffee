@@ -206,7 +206,7 @@ drawRandom = (data, column) ->
 
   # vertical scales
   lodyScale = d3.scale.linear()
-                .domain([0, 18]) # hard-coded maximum so this and the non-randomized version have same scale
+                .domain([0, 23]) # hard-coded maximum so this and the non-randomized version have same scale
                 .range([pad.top+h-pad.inner, pad.top+pad.inner])
   effyScale = d3.scale.linear()
                 .domain([minPhe, maxPhe])
@@ -257,7 +257,7 @@ drawRandom = (data, column) ->
 
   # axes
   lodaxes = lodpanel.append("g").attr("id", "random_lodaxes")
-  lodticks = lodyScale.ticks(5)
+  lodticks = lodyScale.ticks(10)
   lodaxes.append("g").attr("id", "random_lod_yaxis_lines")
       .selectAll("empty")
       .data(lodticks)
@@ -267,7 +267,7 @@ drawRandom = (data, column) ->
       .attr("x2", pad.left+w[0])
       .attr("y1", (d) -> lodyScale(d))
       .attr("y2", (d) -> lodyScale(d))
-      .attr("stroke", labelcolor)
+      .attr("stroke", "white")
       .attr("stroke-width", 1)
   lodaxes.append("g").attr("id", "random_lod_yaxis_labels")
       .selectAll("empty")
@@ -346,7 +346,7 @@ drawRandom = (data, column) ->
       .attr("x2", left[1]+w[1])
       .attr("y1", (d) -> effyScale(d))
       .attr("y2", (d) -> effyScale(d))
-      .attr("stroke", labelcolor)
+      .attr("stroke", "white")
       .attr("stroke-width", 1)
   effaxes.append("g").attr("id", "random_eff_yaxis_labels")
       .selectAll("empty")

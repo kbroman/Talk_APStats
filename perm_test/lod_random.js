@@ -184,7 +184,7 @@ drawRandom = function(data, column) {
     chrPixelEnd[chr] = cur + Math.round((w[0] - chrGap * data.chr.length) / totalChrLength * chrLength[chr]);
     cur = chrPixelEnd[chr] + chrGap;
   }
-  lodyScale = d3.scale.linear().domain([0, 18]).range([pad.top + h - pad.inner, pad.top + pad.inner]);
+  lodyScale = d3.scale.linear().domain([0, 23]).range([pad.top + h - pad.inner, pad.top + pad.inner]);
   effyScale = d3.scale.linear().domain([minPhe, maxPhe]).range([pad.top + h - pad.inner, pad.top + pad.inner]);
   effxScale = d3.scale.ordinal().domain([1, 2, 3]).rangePoints([left[1], left[1] + w[1]], 1);
   effxScaleXchr = d3.scale.ordinal().domain([1, 2, 3, 4, 5, 6]).rangePoints([left[1], left[1] + w[1]], 1);
@@ -229,12 +229,12 @@ drawRandom = function(data, column) {
     return chrColor[d];
   }).attr("stroke", "none");
   lodaxes = lodpanel.append("g").attr("id", "random_lodaxes");
-  lodticks = lodyScale.ticks(5);
+  lodticks = lodyScale.ticks(10);
   lodaxes.append("g").attr("id", "random_lod_yaxis_lines").selectAll("empty").data(lodticks).enter().append("line").attr("x1", pad.left).attr("x2", pad.left + w[0]).attr("y1", function(d) {
     return lodyScale(d);
   }).attr("y2", function(d) {
     return lodyScale(d);
-  }).attr("stroke", labelcolor).attr("stroke-width", 1);
+  }).attr("stroke", "white").attr("stroke-width", 1);
   lodaxes.append("g").attr("id", "random_lod_yaxis_labels").selectAll("empty").data(lodticks).enter().append("text").attr("x", pad.left * 0.7).attr("y", function(d) {
     return lodyScale(d);
   }).text(function(d) {
@@ -266,7 +266,7 @@ drawRandom = function(data, column) {
     return effyScale(d);
   }).attr("y2", function(d) {
     return effyScale(d);
-  }).attr("stroke", labelcolor).attr("stroke-width", 1);
+  }).attr("stroke", "white").attr("stroke-width", 1);
   effaxes.append("g").attr("id", "random_eff_yaxis_labels").selectAll("empty").data(effticks).enter().append("text").attr("x", left[1] - pad.left * 0.25).attr("y", function(d) {
     return effyScale(d);
   }).text(function(d) {
