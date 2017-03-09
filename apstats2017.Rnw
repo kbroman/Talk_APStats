@@ -135,15 +135,12 @@ load("~/Projects/Payseur_Gough/DerivedData/goughF2_simple_v4.RData")
 
 \begin{frame}[c]{WSB and Gough mice}
 
-\only<1>{
 \begin{minipage}[t]{50mm}
 \includegraphics[height=50mm]{Figs/GI_WSB_pic1.png}
 \end{minipage}
 \begin{minipage}[t]{50mm}
 \includegraphics[height=50mm]{Figs/GI_WSB_xray.png}
 \end{minipage}
-}
-\only<2|handout 0>{\figw{Figs/GI_WSB_pic2.png}{0.9}}
 
 
 \note{
