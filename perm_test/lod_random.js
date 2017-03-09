@@ -122,7 +122,7 @@ draw = function(data) {
 };
 
 drawRandom = function(data, column) {
-  var average, chr, chrColor, chrEnd, chrGap, chrLength, chrPixelEnd, chrPixelStart, chrRect, chrStart, cur, curves, dotsAtMarkers, effaxes, effticks, efftip, effxScale, effyScale, i, index, indtip, j, jitter, jitterAmount, k, l, lastMarker, len, len1, len2, len3, len4, len5, len6, len7, len8, len9, lod, lodaxes, lodcurve, lodticks, lodxScale, lodyScale, m, markerClick, markerchr, martip, maxLod, maxLodByChr, maxLodByChr_marker, maxLod_marker, maxPhe, minPhe, o, p, plotPXG, pos, q, r, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9, revPXG, s, t, title, tmp, totalChrLength, u, xloc, yloc;
+  var average, chr, chrColor, chrEnd, chrGap, chrLength, chrPixelEnd, chrPixelStart, chrRect, chrStart, cur, curves, dotsAtMarkers, effaxes, effticks, efftip, effxScale, effxScaleXchr, effyScale, i, index, indtip, j, jitter, jitterAmount, k, l, lastMarker, len, len1, len2, len3, len4, len5, len6, len7, len8, len9, lod, lodaxes, lodcurve, lodticks, lodxScale, lodyScale, m, markerClick, markerchr, martip, maxLod, maxLodByChr, maxLodByChr_marker, maxLod_marker, maxPhe, minPhe, o, p, plotPXG, pos, q, r, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9, revPXG, s, t, title, tmp, totalChrLength, u, xloc, yloc;
   minPhe = d3.min(data.phevals[column]);
   maxPhe = d3.max(data.phevals[column]);
   maxLod = 0;
@@ -187,6 +187,7 @@ drawRandom = function(data, column) {
   lodyScale = d3.scale.linear().domain([0, 18]).range([pad.top + h - pad.inner, pad.top + pad.inner]);
   effyScale = d3.scale.linear().domain([minPhe, maxPhe]).range([pad.top + h - pad.inner, pad.top + pad.inner]);
   effxScale = d3.scale.ordinal().domain([1, 2, 3]).rangePoints([left[1], left[1] + w[1]], 1);
+  effxScaleXchr = d3.scale.ordinal().domain([1, 2, 3, 4, 5, 6]).rangePoints([left[1], left[1] + w[1]], 1);
   lodxScale = {};
   chrColor = {};
   ref4 = data.chr;
@@ -246,21 +247,21 @@ drawRandom = function(data, column) {
     return d;
   }).attr("x", function(d) {
     return (chrPixelStart[d] + chrPixelEnd[d]) / 2;
-  }).attr("y", pad.top + h + pad.bottom * 0.15).attr("fill", labelcolor).attr("text-anchor", "middle").attr("dominant-baseline", "hanging");
-  lodaxes.append("text").attr("id", "random_lod_xaxis_title").text("Chromosome").attr("x", pad.left + w[0] / 2).attr("y", pad.top + h + pad.bottom * 0.5).attr("text-anchor", "middle").attr("fill", titlecolor).attr("dominant-baseline", "hanging");
+  }).attr("y", pad.top + h + pad.bottom * 0.25).attr("fill", labelcolor).attr("text-anchor", "middle").attr("dominant-baseline", "hanging");
+  lodaxes.append("text").attr("id", "random_lod_xaxis_title").text("Chromosome").attr("x", pad.left + w[0] / 2).attr("y", pad.top + h + pad.bottom * 0.65).attr("text-anchor", "middle").attr("fill", titlecolor).attr("dominant-baseline", "hanging");
   effaxes = effpanel.append("g").attr("id", "random_effaxes");
   effticks = effyScale.ticks(7);
-  effaxes.append("g").attr("id", "random_eff_xaxis_lines").selectAll("empty").data([1, 2]).enter().append("line").attr("x1", function(d) {
+  effaxes.append("g").attr("id", "random_eff_xaxis_lines").selectAll("empty").data([1, 2, 3]).enter().append("line").attr("x1", function(d) {
     return effxScale(d);
   }).attr("x2", function(d) {
     return effxScale(d);
   }).attr("y1", pad.top).attr("y2", pad.top + h).attr("stroke", darkGray).attr("stroke-width", 1);
   effaxes.append("g").attr("id", "random_eff_xaxis_labels").selectAll("empty").data([1, 2, 3]).enter().append("text").attr("x", function(d) {
     return effxScale(d);
-  }).attr("y", pad.top + h + pad.bottom * 0.15).text(function(d) {
+  }).attr("y", pad.top + h + pad.bottom * 0.25).text(function(d) {
     return ["GG", "GW", "WW"][d - 1];
   }).attr("fill", labelcolor).attr("text-anchor", "middle").attr("dominant-baseline", "hanging");
-  effaxes.append("text").attr("id", "random_lod_xaxis_title").text("Genotype").attr("x", left[1] + w[1] / 2).attr("y", pad.top + h + pad.bottom * 0.5).attr("text-anchor", "middle").attr("fill", titlecolor).attr("dominant-baseline", "hanging");
+  effaxes.append("text").attr("id", "random_lod_xaxis_title").text("Genotype").attr("x", left[1] + w[1] / 2).attr("y", pad.top + h + pad.bottom * 0.65).attr("text-anchor", "middle").attr("fill", titlecolor).attr("dominant-baseline", "hanging");
   effaxes.append("g").attr("id", "random_eff_yaxis_lines").selectAll("empty").data(effticks).enter().append("line").attr("x1", left[1]).attr("x2", left[1] + w[1]).attr("y1", function(d) {
     return effyScale(d);
   }).attr("y2", function(d) {
@@ -307,19 +308,66 @@ drawRandom = function(data, column) {
   effpanel.append("text").attr("id", "random_pxgtitle_marker").attr("x", left[1] + w[1] / 2).attr("y", pad.top * 0.15).text("").attr("fill", titlecolor).attr("text-anchor", "middle").attr("dominant-baseline", "hanging");
   effpanel.append("text").attr("id", "random_pxgtitle_position").attr("x", left[1] + w[1] / 2).attr("y", pad.top * 0.52).text("").attr("fill", labelcolor).attr("text-anchor", "middle").attr("dominant-baseline", "hanging");
   plotPXG = function(marker) {
-    var g, means, n;
-    means = [0, 0, 0];
-    n = [0, 0, 0];
+    var g, means, n, n_g;
+    means = [0, 0, 0, 0, 0, 0];
+    n = [0, 0, 0, 0, 0, 0];
+    n_g = 0;
     for (i in data.geno[marker]) {
       g = Math.abs(data.geno[marker][i]);
       means[g - 1] += data.phevals[column][i];
       n[g - 1]++;
+      if (g > n_g) {
+        n_g = g;
+      }
     }
     for (i in means) {
-      means[i] /= n[i];
+      if (n[i] === 0) {
+        means[i] = 0;
+      } else {
+        means[i] /= n[i];
+      }
     }
+    effaxes.select("g#random_eff_xaxis_lines").remove();
+    effaxes.select("g#random_eff_xaxis_labels").remove();
+    effaxes.append("g").attr("id", "random_eff_xaxis_lines").selectAll("empty").data(means).enter().append("line").attr("x1", function(d, i) {
+      if (i >= n_g || n_g > 3) {
+        return effxScaleXchr(i + 1);
+      }
+      return effxScale(i + 1);
+    }).attr("x2", function(d, i) {
+      if (i >= n_g || n_g > 3) {
+        return effxScaleXchr(i + 1);
+      }
+      return effxScale(i + 1);
+    }).attr("opacity", function(d, i) {
+      if (i >= n_g) {
+        return 0;
+      }
+      return 1;
+    }).attr("y1", pad.top).attr("y2", pad.top + h).attr("stroke", darkGray).attr("stroke-width", 1);
+    effaxes.append("g").attr("id", "random_eff_xaxis_labels").selectAll("empty").data(means).enter().append("text").attr("x", function(d) {
+      return effxScale(d);
+    }).attr("x", function(d, i) {
+      if (i >= n_g || n_g > 3) {
+        return effxScaleXchr(i + 1);
+      }
+      return effxScale(i + 1);
+    }).attr("y", pad.top + h + pad.bottom * 0.25).text(function(d, i) {
+      if (i >= n_g || n_g > 3) {
+        return ["GG", "GWf", "GWr", "WW", "GY", "WY"][i];
+      }
+      return ["GG", "GW", "WW"][i];
+    }).attr("opacity", function(d, i) {
+      if (i >= n_g) {
+        return 0;
+      }
+      return 1;
+    }).attr("fill", labelcolor).attr("text-anchor", "middle").attr("dominant-baseline", "hanging");
     effpanel.append("g").attr("id", "random_plotPXG").selectAll("empty").data(data.phevals[column]).enter().append("circle").attr("class", "random_plotPXG").attr("cx", function(d, i) {
       g = Math.abs(data.geno[marker][i]);
+      if (n_g > 3) {
+        return effxScaleXchr(g) + jitter[i];
+      }
       return effxScale(g) + jitter[i];
     }).attr("cy", function(d) {
       return effyScale(d);
@@ -346,38 +394,121 @@ drawRandom = function(data, column) {
       return d3.select(this).attr("r", peakRad);
     });
     return effpanel.append("g").attr("id", "random_means").selectAll("empty").data(means).enter().append("line").attr("class", "random_plotPXG").attr("x1", function(d, i) {
+      if (i >= n_g || n[i] === 0 || n_g > 3) {
+        return effxScaleXchr(i + 1) - jitterAmount * 3;
+      }
       return effxScale(i + 1) - jitterAmount * 4;
     }).attr("x2", function(d, i) {
+      if (i >= n_g || n[i] === 0 || n_g > 3) {
+        return effxScaleXchr(i + 1) + jitterAmount * 3;
+      }
       return effxScale(i + 1) + jitterAmount * 4;
-    }).attr("y1", function(d) {
+    }).attr("y1", function(d, i) {
+      if (i >= n_g || n[i] === 0) {
+        return effyScale(means[2]);
+      }
       return effyScale(d);
-    }).attr("y2", function(d) {
+    }).attr("y2", function(d, i) {
+      if (i >= n_g || n[i] === 0) {
+        return effyScale(means[2]);
+      }
       return effyScale(d);
+    }).attr("opacity", function(d, i) {
+      if (i >= n_g || n[i] === 0) {
+        return 0;
+      } else {
+        return 1;
+      }
     }).attr("stroke", darkBlue).attr("stroke-width", 4).attr("fill", "none").on("mouseover", efftip).on("mouseout", function() {
       return d3.selectAll("#random_efftip").remove();
     });
   };
   revPXG = function(marker) {
-    var g, means, n;
-    means = [0, 0, 0];
-    n = [0, 0, 0];
+    var g, means, n, n_g;
+    means = [0, 0, 0, 0, 0, 0];
+    n = [0, 0, 0, 0, 0, 0];
+    n_g = 0;
     for (i in data.geno[marker]) {
       g = Math.abs(data.geno[marker][i]);
       means[g - 1] += data.phevals[column][i];
       n[g - 1]++;
+      if (g > n_g) {
+        n_g = g;
+      }
     }
     for (i in means) {
-      means[i] /= n[i];
+      if (n[i] === 0) {
+        means[i] = 0;
+      } else {
+        means[i] /= n[i];
+      }
     }
-    console.log(n);
-    console.log(means);
-    effpanel.selectAll("line.random_plotPXG").data(means).transition().duration(1000).attr("y1", function(d) {
+    effaxes.select("g#random_eff_xaxis_lines").remove();
+    effaxes.select("g#random_eff_xaxis_labels").remove();
+    effaxes.append("g").attr("id", "random_eff_xaxis_lines").selectAll("empty").data(means).enter().append("line").attr("x1", function(d, i) {
+      if (i >= n_g || n_g > 3) {
+        return effxScaleXchr(i + 1);
+      }
+      return effxScale(i + 1);
+    }).attr("x2", function(d, i) {
+      if (i >= n_g || n_g > 3) {
+        return effxScaleXchr(i + 1);
+      }
+      return effxScale(i + 1);
+    }).attr("opacity", function(d, i) {
+      if (i >= n_g) {
+        return 0;
+      }
+      return 1;
+    }).attr("y1", pad.top).attr("y2", pad.top + h).attr("stroke", darkGray).attr("stroke-width", 1);
+    effaxes.append("g").attr("id", "random_eff_xaxis_labels").selectAll("empty").data(means).enter().append("text").attr("x", function(d, i) {
+      if (i >= n_g || n_g > 3) {
+        return effxScaleXchr(i + 1);
+      }
+      return effxScale(i + 1);
+    }).attr("y", pad.top + h + pad.bottom * 0.25).text(function(d, i) {
+      if (i >= n_g || n_g > 3) {
+        return ["GG", "GWf", "GWr", "WW", "GY", "WY"][i];
+      }
+      return ["GG", "GW", "WW"][i];
+    }).attr("opacity", function(d, i) {
+      if (i >= n_g) {
+        return 0;
+      }
+      return 1;
+    }).attr("fill", labelcolor).attr("text-anchor", "middle").attr("dominant-baseline", "hanging");
+    effpanel.selectAll("line.random_plotPXG").data(means).transition().duration(1000).attr("x1", function(d, i) {
+      if (i >= n_g || n[i] === 0 || n_g > 3) {
+        return effxScaleXchr(i + 1) - jitterAmount * 3;
+      }
+      return effxScale(i + 1) - jitterAmount * 4;
+    }).attr("x2", function(d, i) {
+      if (i >= n_g || n[i] === 0 || n_g > 3) {
+        return effxScaleXchr(i + 1) + jitterAmount * 3;
+      }
+      return effxScale(i + 1) + jitterAmount * 4;
+    }).attr("y1", function(d, i) {
+      if (i >= n_g || n[i] === 0) {
+        return effyScale(means[2]);
+      }
       return effyScale(d);
-    }).attr("y2", function(d) {
+    }).attr("y2", function(d, i) {
+      if (i >= n_g || n[i] === 0) {
+        return effyScale(means[2]);
+      }
       return effyScale(d);
+    }).attr("opacity", function(d, i) {
+      if (i >= n_g || n[i] === 0) {
+        return 0;
+      } else {
+        return 1;
+      }
     });
     return svg.selectAll("circle.random_plotPXG").data(data.phevals[column]).transition().duration(1000).attr("cx", function(d, i) {
       g = Math.abs(data.geno[marker][i]);
+      if (n_g > 3) {
+        return effxScaleXchr(g) + jitter[i];
+      }
       return effxScale(g) + jitter[i];
     }).attr("fill", function(d, i) {
       if (data.geno[marker][i] < 0) {

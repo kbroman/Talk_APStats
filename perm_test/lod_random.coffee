@@ -214,6 +214,9 @@ drawRandom = (data, column) ->
   effxScale = d3.scale.ordinal()
                  .domain([1,2,3])
                  .rangePoints([left[1], left[1]+w[1]], 1)
+  effxScaleXchr = d3.scale.ordinal()
+                 .domain([1,2,3,4,5,6])
+                 .rangePoints([left[1], left[1]+w[1]], 1)
 
   # chromosome-specific horizontal scales
   lodxScale = {}
@@ -292,14 +295,14 @@ drawRandom = (data, column) ->
       .append("text")
       .text((d) -> d)
       .attr("x", (d) -> (chrPixelStart[d]+chrPixelEnd[d])/2)
-      .attr("y", pad.top+h+pad.bottom*0.15)
+      .attr("y", pad.top+h+pad.bottom*0.25)
       .attr("fill", labelcolor)
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "hanging")
   lodaxes.append("text").attr("id", "random_lod_xaxis_title")
       .text("Chromosome")
       .attr("x", pad.left + w[0]/2)
-      .attr("y", pad.top+h+pad.bottom*0.5)
+      .attr("y", pad.top+h+pad.bottom*0.65)
       .attr("text-anchor", "middle")
       .attr("fill", titlecolor)
       .attr("dominant-baseline", "hanging")
@@ -307,7 +310,7 @@ drawRandom = (data, column) ->
   effticks = effyScale.ticks(7)
   effaxes.append("g").attr("id", "random_eff_xaxis_lines")
       .selectAll("empty")
-      .data([1,2])
+      .data([1,2,3])
       .enter()
       .append("line")
       .attr("x1", (d) -> effxScale(d))
@@ -322,7 +325,7 @@ drawRandom = (data, column) ->
       .enter()
       .append("text")
       .attr("x", (d) -> effxScale(d))
-      .attr("y", pad.top+h+pad.bottom*0.15)
+      .attr("y", pad.top+h+pad.bottom*0.25)
       .text((d) -> ["GG", "GW", "WW"][d-1])
       .attr("fill", labelcolor)
       .attr("text-anchor", "middle")
@@ -330,7 +333,7 @@ drawRandom = (data, column) ->
   effaxes.append("text").attr("id", "random_lod_xaxis_title")
       .text("Genotype")
       .attr("x", left[1] + w[1]/2)
-      .attr("y", pad.top+h+pad.bottom*0.5)
+      .attr("y", pad.top+h+pad.bottom*0.65)
       .attr("text-anchor", "middle")
       .attr("fill", titlecolor)
       .attr("dominant-baseline", "hanging")
@@ -420,15 +423,68 @@ drawRandom = (data, column) ->
 
   # functions to plot phenotype vs genotype
   plotPXG = (marker) ->
-      means = [0, 0, 0]
-      n = [0, 0, 0]
+      means = [0, 0, 0, 0, 0, 0]
+      n = [0, 0, 0, 0, 0, 0]
+      n_g = 0
       # calculate group averages
       for i of data.geno[marker]
          g = Math.abs(data.geno[marker][i])
          means[g-1] += data.phevals[column][i]
          n[g-1]++
+         n_g = g if g > n_g
       for i of means
-        means[i] /= n[i]
+          if n[i] == 0
+              means[i] = 0
+          else
+              means[i] /= n[i]
+
+
+      effaxes.select("g#random_eff_xaxis_lines").remove()
+      effaxes.select("g#random_eff_xaxis_labels").remove()
+
+      effaxes.append("g").attr("id", "random_eff_xaxis_lines")
+             .selectAll("empty")
+             .data(means)
+             .enter()
+             .append("line")
+             .attr("x1", (d,i) ->
+                 if i >= n_g or n_g > 3
+                     return effxScaleXchr(i+1)
+                 effxScale(i+1))
+             .attr("x2", (d,i) ->
+                 if i >= n_g or n_g > 3
+                     return effxScaleXchr(i+1)
+                 effxScale(i+1))
+             .attr("opacity", (d,i) ->
+                 if i >= n_g
+                     return 0
+                 1)
+             .attr("y1", pad.top)
+             .attr("y2", pad.top+h)
+             .attr("stroke", darkGray)
+             .attr("stroke-width", 1)
+      effaxes.append("g").attr("id", "random_eff_xaxis_labels")
+             .selectAll("empty")
+             .data(means)
+             .enter()
+             .append("text")
+             .attr("x", (d) -> effxScale(d))
+             .attr("x", (d,i) ->
+                 if i>=n_g or n_g>3
+                     return effxScaleXchr(i+1)
+                 effxScale(i+1))
+             .attr("y", pad.top+h+pad.bottom*0.25)
+             .text((d,i) ->
+                 if i >= n_g or n_g > 3
+                     return ["GG", "GWf", "GWr", "WW", "GY", "WY"][i]
+                 ["GG", "GW", "WW"][i])
+             .attr("opacity", (d,i) ->
+                 if i >= n_g
+                     return 0
+                 1)
+             .attr("fill", labelcolor)
+             .attr("text-anchor", "middle")
+             .attr("dominant-baseline", "hanging")
 
       effpanel.append("g").attr("id", "random_plotPXG")
           .selectAll("empty")
@@ -438,6 +494,8 @@ drawRandom = (data, column) ->
           .attr("class", "random_plotPXG")
           .attr("cx", (d,i) ->
               g = Math.abs(data.geno[marker][i])
+              if n_g > 3 # X chromosome
+                  return effxScaleXchr(g)+jitter[i]
               effxScale(g)+jitter[i])
           .attr("cy", (d) -> effyScale(d))
           .attr("r", peakRad)
@@ -463,10 +521,26 @@ drawRandom = (data, column) ->
           .enter()
           .append("line")
           .attr("class", "random_plotPXG")
-          .attr("x1", (d,i) -> effxScale(i+1) - jitterAmount*4)
-          .attr("x2", (d,i) -> effxScale(i+1) + jitterAmount*4)
-          .attr("y1", (d) -> effyScale(d))
-          .attr("y2", (d) -> effyScale(d))
+          .attr("x1", (d,i) ->
+              if i >= n_g or n[i] == 0 or n_g > 3
+                  return effxScaleXchr(i+1) - jitterAmount*3
+              effxScale(i+1) - jitterAmount*4)
+          .attr("x2", (d,i) ->
+              if i >= n_g or n[i] == 0 or n_g > 3
+                  return effxScaleXchr(i+1) + jitterAmount*3
+              effxScale(i+1) + jitterAmount*4)
+          .attr("y1", (d,i) ->
+              if i >= n_g or n[i] == 0
+                  return effyScale(means[2])
+              effyScale(d))
+          .attr("y2", (d,i) ->
+              if i >= n_g or n[i] == 0
+                  return effyScale(means[2])
+              effyScale(d))
+          .attr("opacity", (d,i) ->
+              if i >= n_g or n[i] == 0
+                  return 0
+              else 1)
           .attr("stroke", darkBlue)
           .attr("stroke-width", 4)
           .attr("fill", "none")
@@ -475,29 +549,98 @@ drawRandom = (data, column) ->
 
   revPXG = (marker) ->
       # calculate group averages
-      means = [0,0,0]
-      n = [0,0,0]
+      means = [0,0,0,0,0,0]
+      n = [0,0,0,0,0,0]
+      n_g = 0
       # calculate group averages
       for i of data.geno[marker]
          g = Math.abs(data.geno[marker][i])
          means[g-1] += data.phevals[column][i]
          n[g-1]++
+         n_g = g if g > n_g
       for i of means
-        means[i] /= n[i]
-      console.log(n)
-      console.log(means)
+          if n[i] == 0
+              means[i] = 0
+          else
+              means[i] /= n[i]
+
+      effaxes.select("g#random_eff_xaxis_lines").remove()
+      effaxes.select("g#random_eff_xaxis_labels").remove()
+
+      effaxes.append("g").attr("id", "random_eff_xaxis_lines")
+             .selectAll("empty")
+             .data(means)
+             .enter()
+             .append("line")
+             .attr("x1", (d,i) ->
+                 if i >= n_g or n_g > 3
+                     return effxScaleXchr(i+1)
+                 effxScale(i+1))
+             .attr("x2", (d,i) ->
+                 if i >= n_g or n_g > 3
+                     return effxScaleXchr(i+1)
+                 effxScale(i+1))
+             .attr("opacity", (d,i) ->
+                 if i >= n_g
+                     return 0
+                 1)
+             .attr("y1", pad.top)
+             .attr("y2", pad.top+h)
+             .attr("stroke", darkGray)
+             .attr("stroke-width", 1)
+      effaxes.append("g").attr("id", "random_eff_xaxis_labels")
+             .selectAll("empty")
+             .data(means)
+             .enter()
+             .append("text")
+             .attr("x", (d,i) ->
+                 if i>=n_g or n_g>3
+                     return effxScaleXchr(i+1)
+                 effxScale(i+1))
+             .attr("y", pad.top+h+pad.bottom*0.25)
+             .text((d,i) ->
+                 if i >= n_g or n_g > 3
+                     return ["GG", "GWf", "GWr", "WW", "GY", "WY"][i]
+                 ["GG", "GW", "WW"][i])
+             .attr("opacity", (d,i) ->
+                 if i >= n_g
+                     return 0
+                 1)
+             .attr("fill", labelcolor)
+             .attr("text-anchor", "middle")
+             .attr("dominant-baseline", "hanging")
 
       effpanel.selectAll("line.random_plotPXG")
           .data(means)
           .transition().duration(1000)
-          .attr("y1", (d) -> effyScale(d))
-          .attr("y2", (d) -> effyScale(d))
+          .attr("x1", (d,i) ->
+              if i >= n_g or n[i] == 0 or n_g > 3
+                  return effxScaleXchr(i+1) - jitterAmount*3
+              effxScale(i+1) - jitterAmount*4)
+          .attr("x2", (d,i) ->
+              if i >= n_g or n[i] == 0 or n_g > 3
+                  return effxScaleXchr(i+1) + jitterAmount*3
+              effxScale(i+1) + jitterAmount*4)
+          .attr("y1", (d,i) ->
+              if i >= n_g or n[i] == 0
+                  return effyScale(means[2])
+              effyScale(d))
+          .attr("y2", (d,i) ->
+              if i >= n_g or n[i] == 0
+                  return effyScale(means[2])
+              effyScale(d))
+          .attr("opacity", (d,i) ->
+              if i >= n_g or n[i] == 0
+                  return 0
+              else 1)
 
       svg.selectAll("circle.random_plotPXG")
          .data(data.phevals[column])
          .transition().duration(1000)
          .attr("cx", (d,i) ->
               g = Math.abs(data.geno[marker][i])
+              if n_g > 3
+                  return effxScaleXchr(g)+jitter[i]
               effxScale(g)+jitter[i])
          .attr("fill", (d,i) ->
               return pink if data.geno[marker][i] < 0

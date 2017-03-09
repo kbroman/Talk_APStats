@@ -12,7 +12,6 @@ for(i in names(f2$geno))
     marker_subset <- c(marker_subset,
                        pickMarkerSubset(pull.map(f2, chr=i)[[1]], 0.5))
 f2 <- pull.markers(f2, marker_subset)
-f2 <- f2["-X",]
 f2$pheno <- cbind(weight=growthSm[,5], f2$pheno[,c("ID", "sex", "pgm")])
 
 
@@ -47,6 +46,9 @@ outspl <- lapply(split(out, out[,1]), function(a) {
 
 f2i <- pull.geno(fill.geno(f2, err=0.002, map.function="kosambi"))
 g <- pull.geno(f2)
+xmar <- markernames(f2, chr="X")
+g[,xmar] <- reviseXdata("f2", "full", getsex(f2), geno=g[,xmar], cross.attr=attributes(f2))
+f2i[,xmar] <- reviseXdata("f2", "full", getsex(f2), geno=f2i[,xmar], cross.attr=attributes(f2))
 f2i[is.na(g) | f2i != g] <- -f2i[is.na(g) | f2i != g]
 f2i <- as.list(as.data.frame(f2i))
 individuals <- f2$pheno$ID
