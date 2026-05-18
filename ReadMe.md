@@ -6,4 +6,4 @@ These are slides for a talk that I gave to AP statistics students at
 [Complex Trait Community 13th annual meeting](http://www.ctc2014.org) in
 Berlin, Germany, on 21 May 2014.)
 
-Slides and interactive graphs online at [bit.ly/APStats2017](http://bit.ly/APStats2017).
+Slides and interactive graphs online at [bit.ly/APStats2017](https://kbroman.org/Talk_APStats/).
